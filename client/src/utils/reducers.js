@@ -14,27 +14,25 @@ import {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_PRODUCTS: {
+    case UPDATE_PRODUCTS:
       return {
         ...state,
         products: [...action.products],
       };
-    }
-    case UPDATE_CATEGORIES: {
+
+    case UPDATE_CATEGORIES:
       return {
         ...state,
         categories: [...action.categories],
       };
-    }
 
-    case UPDATE_CURRENT_CATEGORY: {
+    case UPDATE_CURRENT_CATEGORY:
       return {
         ...state,
         currentCategory: action.currentCategory
       };
-    }
     
-    case ADD_TO_CART: {
+    case ADD_TO_CART:
       return {
         // state operator to preserve everything else on state
         ...state,
@@ -43,16 +41,14 @@ export const reducer = (state, action) => {
         // update cart property to add action.product
         cart: [...state.cart, action.product]
       };
-    }
 
-    case ADD_MULTIPLE_TO_CART: {
+    case ADD_MULTIPLE_TO_CART:
       return {
         ...state,
         cart: [...state.cart, ...action.products],
       };
-    }
 
-      case REMOVE_FROM_CART: {
+      case REMOVE_FROM_CART:
         // use filter() method to only keep items that do not match the provided _id property
         let newState = state.cart.filter(product => {
           return product._id !== action._id;
@@ -64,9 +60,8 @@ export const reducer = (state, action) => {
           cartOpen: newState.length > 0,
           cart: newState
         };
-      }
 
-        case UPDATE_CART_QUANTITY: {
+        case UPDATE_CART_QUANTITY:
           return {
             ...state,
             cartOpen: true,
@@ -78,22 +73,19 @@ export const reducer = (state, action) => {
               return product;
             })
           };
-        }
           // cart empty and closed after CLEAR_CART action is called
-        case CLEAR_CART: {
+        case CLEAR_CART:
           return {
             ...state,
             cartOpen: false,
             cart: []
           };
-        }
         // cartOpen to be the opposite of its previous value each time TOGGLE_CART is called
-        case TOGGLE_CART: {
+        case TOGGLE_CART:
           return {
             ...state,
             cartOpen: !state.cartOpen
           };
-        }
 
     default:
       return state;
