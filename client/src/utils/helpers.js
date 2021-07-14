@@ -45,22 +45,22 @@ export function idbPromise(storeName, method, object) {
       // ck what the value of the method is
         // if it's put, get, delete --> overwriting any data with matching id
       switch (method) {
-        case 'put':
+        case 'put': {
           store.put(object);
           resolve(object);
           break;
-        case 'get':
+        }
+        case 'get': {
           const all = store.getAll();
           all.onsuccess = function() {
             resolve(all.result);
           };
           break;
-        case 'delete':
+        }
+        case 'delete': {
           store.delete(object._id);
           break;
-        default:
-          console.log('No valid method');
-          break;
+        }
       }
 
       // when the transaction is complete, close the connection

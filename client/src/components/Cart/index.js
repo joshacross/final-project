@@ -24,7 +24,7 @@ const Cart = () => {
       const cart = await idbPromise('cart', 'get');
       // array of items returning from IDB = dispatch ADD_MULTI...
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [ ...cart ] });
-    };
+    }
     // if there are no items in cart, then exec getCart() from cart obj store
     if (!state.cart.length) {
       getCart();

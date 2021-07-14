@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactDOM, { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
@@ -38,28 +39,32 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div>
-          <StoreProvider>
-            <Hiro />
-            <Nav />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/success" component={Success} />
-              <Route exact path="/orderHistory" component={OrderHistory} />
-              <Route exact path="/products/:id" component={Detail} />
-              <Route component={NoMatch} />
-            </Switch>
-          </StoreProvider>
-        </div>
-      </Router>
-    </ApolloProvider>
-  );
+class App extends Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <div>
+            <StoreProvider>
+              <Hiro />
+              <Nav />
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/success" component={Success} />
+                  <Route exact path="/orderHistory" component={OrderHistory} />
+                  <Route exact path="/products/:id" component={Detail} />
+                  <Route component={NoMatch} />
+                </Switch>
+            </StoreProvider>
+          </div>
+        </Router>
+      </ApolloProvider>
+    );
+  }
 }
+
+render(<App />, document.getElementById('root'));
 
 export default App;
