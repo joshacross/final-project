@@ -40,7 +40,6 @@ const typeDefs = gql`
     type Review {
         _id: ID
         user: ID
-        productId: ID
         reviewText: String
     }
 
@@ -64,7 +63,7 @@ const typeDefs = gql`
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         updateProduct(_id: ID!, quantity: Int!): Product
         login(email: String!, password: String!): Auth
-        addReview(user: ID!, reviewText: String! product: ID!): Product
+        addReview(user: ID!, reviewText: String!): Product
         addProduct(_id: ID!): Product
         removeProduct(_id: ID!): Product
         removeReview(_id: ID!): Product

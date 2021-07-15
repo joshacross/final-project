@@ -71,37 +71,30 @@ db.once('open', async () => {
   const review = await Review.insertMany([
     {
       user: user[0]._id,
-      productId: product[0]._id,
       reviewText: 'This should be a review by James Johnson. This is a fantastic product, love the new augmented features! Wish the description was not in latin thougth.'
     },
     {
       user: user[1]._id,
-      productId: product[1]._id,
       reviewText: 'This should be a review by Listen Linda. This is a fantastic product, love the new augmented features!'
     },
     {
       user: user[2]._id,
-      productId: product[2]._id,
       reviewText: 'This should be a review by Daddie Warbucks. This is a fantastic product, love the new augmented features!'
     },
     {
       user: user[3]._id,
-      productId: product[3]._id,
       reviewText: 'This should be a review by Cynthia Thetic. This is a fantastic product, love the new augmented features!'
     },
     {
       user: user[4]._id,
-      productId: product[4]._id,
       reviewText: 'This should be a review by Foh Pah. This is a fantastic product, love the new augmented features!'
     },
     {
       user: user[5]._id,
-      productId: product[5]._id,
       reviewText: 'This should be a review by Johnny Appleseed. This is a fantastic product, love the new augmented features!'
     },
     {
       user: user[6]._id,
-      productId: product[6]._id,
       reviewText: 'This should be a review by Georgia Carver. This is a fantastic product, love the new augmented features!'
     }
   ])
@@ -197,7 +190,7 @@ db.once('open', async () => {
       thumbnail: 'hatthree.jpg',
       price: 9.99,
       quantity: 100,
-      reviews: []
+      reviews: review[0]._id
     },
     {
       name: 'Sunnies Three',
@@ -207,7 +200,7 @@ db.once('open', async () => {
       thumbnail: 'sunthree.jpg',
       price: 1.99,
       quantity: 1000,
-      reviews: []
+      reviews: review[1]._id
     },
     {
       name: 'Watch It Four',
@@ -218,7 +211,7 @@ db.once('open', async () => {
       thumbnail: 'watchfour.jpg',
       price: 2.99,
       quantity: 1000,
-      reviews: []
+      reviews: review[2]._id
     },
     {
       name: 'Head Gear Four',
@@ -229,7 +222,7 @@ db.once('open', async () => {
       thumbnail: 'hatfour.jpg',
       price: 7.99,
       quantity: 100,
-      reviews: []
+      reviews: review[3]._id
     },
     {
       name: 'SunShadeFour',
@@ -240,7 +233,7 @@ db.once('open', async () => {
       thumbnail: 'sunfour.jpg',
       price: 9.99,
       quantity: 600,
-      reviews: []
+      reviews: review[4]._id
     }
   ]);
 

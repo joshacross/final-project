@@ -8,11 +8,6 @@ const reviewSchema = new Schema({
     ref: 'User',
     required: true
   },
-  productId: {
-    type: Schema.Types.ObjectId,
-    ref:'Product',
-    required: true
-  },
   reviewText: {
     type: String,
     required: true
