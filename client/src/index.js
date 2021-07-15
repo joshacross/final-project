@@ -1,12 +1,7 @@
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
-
-const app = (
-  <App />
-);
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
