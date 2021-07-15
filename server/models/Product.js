@@ -32,11 +32,10 @@ const productSchema = new Schema({
     ref: 'Category',
     required: true
   },
-  reviews: {
+  reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review',
-    required: true
-  }
+  }]
 });
 
 const Product = mongoose.model('Product', productSchema);
