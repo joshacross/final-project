@@ -40,6 +40,7 @@ const typeDefs = gql`
     type Review {
         _id: ID
         user: ID
+        productId: ID
         reviewText: String
     }
 
