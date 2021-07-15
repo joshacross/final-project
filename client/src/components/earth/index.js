@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM, { render } from 'react-dom';
+import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
 import earthImage from './earth.png';
 
-class Earth extends Component {
-  render() {
+function Earth () {
     return (
       <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
         <Marker parameters={{ preset: 'hiro' }}>
@@ -24,9 +22,7 @@ class Earth extends Component {
         </Marker>
       </AFrameRenderer>
     );
-  }
 }
 
-render(<Earth />, document.getElementById('root'));
 
 export default Earth;
