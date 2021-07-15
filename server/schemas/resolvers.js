@@ -1,7 +1,8 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Order, Review } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const { STRIPE_URI } = require("../.env");
+const stripe = require("stripe")(STRIPE_URI);
 
 const resolvers = {
   Query: {
@@ -96,7 +97,6 @@ const resolvers = {
 
       return { token, user };
     },
-    //are we going to use context?
     addOrder: async (parent, { products }, context) => {
       if (context.user) {
         const order = new Order({ products });
@@ -146,15 +146,38 @@ const resolvers = {
       // do you have a process in mind?
       if (context.user) {
           // maybe create({...args, context.user._id}) 
-        const { review } = await Review.create(args);
+        const { review } = await Review.create(...args, context.user._id);
           const product = await Product.findByIdAndUpdate(
-            review.product._id,
             {
-          $push: { reviews: review },
-            });
+            _id: review.product._id,
+              $push: { reviews: review },
+              new: true
+            }
+          );
         return product;
       }
     },
+    addProduct: async (parent, args, context) => {
+      if (context.user) {
+        const product = await Product.create(args);
+        return product;
+      }
+      throw new AuthenticationError("Incorrect credentials");
+    },
+    removeProduct: async (parent, { _id }, context) => {
+      if (context.user) {
+        const product = await Product.findByIdAndDelete({ _id: _id });
+        return product;
+      }
+      throw new AuthenticationError("Incorrect credentials");
+    },
+    removeReview: async (parent, { _id }, context) => {
+      if (context.user) {
+        const review = await Review.findByIdAndDelete({ _id: _id });
+        return review;
+      }
+      throw new AuthenticationError("Incorrect credentials");
+    }
   },
 };
 
