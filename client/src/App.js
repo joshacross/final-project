@@ -61,7 +61,7 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
-              <Route exact path="/ar" component={Hiro} />
+              <Route exact path="/ar" component={Hiro} /> 
           <Route component={NoMatch} />
             </Switch>
           </StoreProvider>
