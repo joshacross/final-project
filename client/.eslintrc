@@ -1,7 +1,6 @@
 {
   "extends": [
     "eslint:recommended",
-    "google",
     "plugin:import/errors",
     "plugin:import/warnings"
   ],

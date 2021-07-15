@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "Browser-Based Augmented Reality Store",
   "scripts": {
-    "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
-    "open:src": "babel-node tools/srcServer.js",
-    "lint": "node_modules/.bin/esw webpack.config.* src tools",
-    "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "start": "npm-run-all --parallel lint:watch",
+    "lint": "node_modules/.bin/esw",
+    "lint:watch": "npm run lint -- --watch"
   },
-  "author": "Joshua Cross, John Banas, Casey Arrington, Dallas Yatsinko Ben Sottek",
+  "author": "Joshua Cross, John Banas, Casey Arrington, Dallas Yatsinko Ben Sottek - Credit to Luke Bel",
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.21",

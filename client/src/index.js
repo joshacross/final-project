@@ -8,4 +8,9 @@ const app = (
   <App />
 );
 
-ReactDOM.render(app, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
