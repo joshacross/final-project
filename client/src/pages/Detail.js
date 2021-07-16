@@ -14,7 +14,6 @@ import {
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 
-
 function Detail() {
 
   const [state, dispatch] = useStoreContext();
@@ -110,7 +109,6 @@ useEffect(() => {
               Remove from Cart
             </button>
           </p>
-
           <img
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
@@ -124,3 +122,4 @@ useEffect(() => {
 }
 
 export default Detail;
+
