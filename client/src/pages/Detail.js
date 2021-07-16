@@ -13,6 +13,8 @@ import {
   UPDATE_PRODUCTS,
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
+import { Button } from '@material-ui/core';
+import { QRPopup } from '../components/QRPopup';
 
 function Detail() {
 
@@ -24,6 +26,8 @@ function Detail() {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   const { products, cart } = state;
+
+  const [open, setOpen] = useState(false);
 
 useEffect(() => {
   // already in global store
@@ -101,13 +105,13 @@ useEffect(() => {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
+            <Button onClick={addToCart}>Add to Cart</Button>
+            <Button
               disabled={!cart.find(p => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
-            </button>
+            </Button>
           </p>
           <img
             src={`/images/${currentProduct.image}`}
@@ -122,4 +126,3 @@ useEffect(() => {
 }
 
 export default Detail;
-
