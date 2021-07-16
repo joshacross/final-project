@@ -80,7 +80,7 @@ export const UPDATE_USER = gql`
           modelImage
           reviews {
             _id
-            user
+            author
             reviewText
           }
         }
@@ -109,7 +109,7 @@ export const UPDATE_PRODUCT = gql`
         }
         reviews {
             _id
-            user
+            author
             reviewText
           }
         modelImage
