@@ -91,7 +91,7 @@ export const UPDATE_USER = gql`
 
 export const UPDATE_PRODUCT = gql`
   mutation updateProduct(
-    $_id: ID!
+    _id: ID!
     $quantity: Int!
   ) {
     updateProduct(
