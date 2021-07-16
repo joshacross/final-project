@@ -6,6 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@material-ui/core": "^4.12.1",
+    "@material/top-app-bar": "^11.0.0",
     "@stripe/stripe-js": "^1.16.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

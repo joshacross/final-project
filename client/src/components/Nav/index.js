@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
@@ -49,6 +50,20 @@ function Nav() {
       </h1>
 
       <nav>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+
+            </IconButton>
+            <Typography variant="h6">
+              
+                <span role="img" aria-label="shopping bag">🛍️</span>
+                <a href="/">Augmented Retail</a>
+              
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
         {showNavigation()}
       </nav>
     </header>
