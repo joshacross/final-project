@@ -18,7 +18,7 @@ import { StoreProvider } from "./utils/GlobalState";
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
-import Earth from './components/Earth';
+import Earth from './components/earth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
