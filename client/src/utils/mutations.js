@@ -96,7 +96,7 @@ export const UPDATE_PRODUCT = gql`
   ) {
     updateProduct(
       _id: $_id
-      quantity: $$quantity
+      quantity: $quantity
     ) {
       product {
         name
