@@ -20,9 +20,10 @@ import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
 import Earth from './components/earth';
+import ThreeDee from './components/3D';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'https://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -65,6 +66,7 @@ function App() {
               <Route exact path="/products/:id" component={Detail} />
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
+              <Route exact path="/threedee" component={ThreeDee} />
           <Route component={NoMatch} />
             </Switch>
           </StoreProvider>
