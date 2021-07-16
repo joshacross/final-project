@@ -10,15 +10,26 @@ import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
-  UPDATE_PRODUCTS,
+  UPDATE_PRODUCTS
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 import { Button } from '@material-ui/core';
-import { QRPopup } from '../components/QRPopup';
+// import AlertDialogSlide from '../components/QRPopup';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import { TOGGLE_QR_POPUP } from '../utils/actions';
 
 function Detail() {
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   const [state, dispatch] = useStoreContext();
+
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({})
@@ -26,8 +37,6 @@ function Detail() {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   const { products, cart } = state;
-
-  const [open, setOpen] = useState(false);
 
 useEffect(() => {
   // already in global store
@@ -93,6 +102,14 @@ useEffect(() => {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
+  const handleClickOpen = () => {
+    dispatch({ type: TOGGLE_QR_POPUP });
+  };
+
+  const handleClose = () => {
+    dispatch({ type: TOGGLE_QR_POPUP });
+  };
+
   return (
     <>
       {currentProduct ? (
@@ -112,7 +129,32 @@ useEffect(() => {
             >
               Remove from Cart
             </Button>
-          </p>
+              <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                View In Your Environment
+              </Button>
+              <Dialog
+                  open={state.qrOpen}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-slide-title"
+                  aria-describedby="alert-dialog-slide-description"
+                >
+                  <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-discription">
+                      Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality
+                      <img src="../../public/images/Localhost.png" alt="qr code"/>
+                    </DialogContentText>
+
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                      Go Back
+                    </Button>
+                </DialogActions>
+                </Dialog>
+            </p>
           <img
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
