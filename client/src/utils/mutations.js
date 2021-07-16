@@ -49,6 +49,7 @@ export const ADD_USER = gql`
     }
   }
 `;
+<<<<<<< HEAD
 
 export const UPDATE_USER = gql`
   mutation updateUser(
@@ -139,3 +140,5 @@ export const REMOVE_REVIEW = gql`
     }
   }
 `;
+=======
+>>>>>>> 6bdd453eea17b240318196358f2d443bede07650
