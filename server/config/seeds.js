@@ -6,7 +6,7 @@ db.once('open', async () => {
   await User.deleteMany();
   await Review.deleteMany();
 
-  const categories = await Category.insertMany([
+  await Category.insertMany([
     { name: 'Watch' },
     { name: 'Hat' },
     { name: 'Sunglasses' }
@@ -16,7 +16,7 @@ db.once('open', async () => {
 
   await Product.deleteMany();
 
-  const products = await Product.insertMany([
+  await Product.insertMany([
     {
       name: 'Cool Watch One',
       description:
