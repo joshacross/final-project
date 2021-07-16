@@ -139,3 +139,15 @@ export const REMOVE_REVIEW = gql`
     }
   }
 `;
+
+export const ADD_REVIEW = gql`
+  mutation addReview($user:ID!, $reviewText:String!){
+    addReview(user:$user, reviewText: $reviewText) {
+      review {
+        _id
+        user
+        reviewText
+      }
+    }
+  }
+`;

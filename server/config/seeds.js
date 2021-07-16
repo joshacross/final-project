@@ -66,7 +66,7 @@ db.once('open', async () => {
     }
   ])
 
-  console.log('users seeded');
+  console.log('user seeded');
 
   const review = await Review.insertMany([
     {
