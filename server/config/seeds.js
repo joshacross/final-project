@@ -1,10 +1,10 @@
 const db = require('./connection');
-const { User, Product, Category, Review } = require('../models');
+const { User, Product, Category, Review} = require('../models');
 
 db.once('open', async () => {
   await Category.deleteMany();
-  await Review.deleteMany();
   await User.deleteMany();
+  await Review.deleteMany();
 
   const categories = await Category.insertMany([
     { name: 'Watch' },
@@ -13,93 +13,6 @@ db.once('open', async () => {
   ]);
 
   console.log('categories seeded');
-
-  const user = await User.insertMany([
-    {
-      firstName: 'James',
-      lastName: 'Johnson',
-      email: 'james@gmail.com',
-      password: 'password123',
-      orders:[]
-    },
-    {
-      firstName: 'Listen',
-      lastName: 'Linda',
-      email: 'llinda@gmail.com',
-      password: 'password123',
-      orders: []
-    },
-    {
-      firstName: 'Daddie',
-      lastName: 'Warbucks',
-      email: 'dwar@gmail.com',
-      password: 'password123',
-      orders: []
-    },
-    {
-      firstName: 'Cynthia',
-      lastName: 'Thetic',
-      email: 'cynthetic@gmail.com',
-      password: 'password123',
-      orders: []
-    },
-    {
-      firstName: 'Foh',
-      lastName: 'Pah',
-      email: 'FohPah@gmail.com',
-      password: 'password123',
-      orders: []
-    },
-    {
-      firstName: 'Johnny',
-      lastName: 'Appleseed',
-      email: 'japple@gmail.com',
-      password: 'password123',
-      orders: []
-    },
-    {
-      firstName: 'Georgia',
-      lastName: 'Carver',
-      email: 'carver@gmail.com',
-      password: 'password123',
-      orders: []
-    }
-  ])
-
-  console.log('user seeded');
-
-  const review = await Review.insertMany([
-    {
-      user: user[0]._id,
-      reviewText: 'This should be a review by James Johnson. This is a fantastic product, love the new augmented features! Wish the description was not in latin thougth.'
-    },
-    {
-      user: user[1]._id,
-      reviewText: 'This should be a review by Listen Linda. This is a fantastic product, love the new augmented features!'
-    },
-    {
-      user: user[2]._id,
-      reviewText: 'This should be a review by Daddie Warbucks. This is a fantastic product, love the new augmented features!'
-    },
-    {
-      user: user[3]._id,
-      reviewText: 'This should be a review by Cynthia Thetic. This is a fantastic product, love the new augmented features!'
-    },
-    {
-      user: user[4]._id,
-      reviewText: 'This should be a review by Foh Pah. This is a fantastic product, love the new augmented features!'
-    },
-    {
-      user: user[5]._id,
-      reviewText: 'This should be a review by Johnny Appleseed. This is a fantastic product, love the new augmented features!'
-    },
-    {
-      user: user[6]._id,
-      reviewText: 'This should be a review by Georgia Carver. This is a fantastic product, love the new augmented features!'
-    }
-  ])
-
-  console.log('Reviews seeded.')
 
   await Product.deleteMany();
 
@@ -113,7 +26,7 @@ db.once('open', async () => {
       category: categories[0]._id,
       price: 2.99,
       quantity: 500,
-      reviews: review[0]._id
+      reviews: []
     },
     {
       name: 'Hat One',
@@ -124,7 +37,7 @@ db.once('open', async () => {
       category: categories[1]._id,
       price: 1.99,
       quantity: 500,
-      reviews: review[1]._id
+      reviews: []
     },
     {
       name: 'Sunglasses One',
@@ -135,7 +48,7 @@ db.once('open', async () => {
       thumbnail: 'sunone.jpg',
       price: 7.99,
       quantity: 20,
-      reviews: review[2]._id
+      reviews: []
     },
     {
       name: 'Another Watch Two',
@@ -146,7 +59,7 @@ db.once('open', async () => {
       thumbnail: 'watchtwo.jpg',
       price: 3.99,
       quantity: 50,
-      reviews: review[3]._id
+      reviews: []
     },
     {
       name: 'Top Hat Two',
@@ -157,7 +70,7 @@ db.once('open', async () => {
       thumbnail: 'hattwo.jpg',
       price: 14.99,
       quantity: 100,
-      reviews: review[4]._id
+      reviews: []
     },
     {
       name: 'Shades Two',
@@ -168,7 +81,7 @@ db.once('open', async () => {
       thumbnail: 'suntwo.jpg',
       price: 399.99,
       quantity: 30,
-      reviews: review[5]._id
+      reviews: []
     },
     {
       name: 'Watch Number Three',
@@ -179,7 +92,7 @@ db.once('open', async () => {
       thumbnail: 'watchthree.jpg',
       price: 199.99,
       quantity: 30,
-      reviews: review[6]._id
+      reviews: []
     },
     {
       name: 'Hat Wear Three',
@@ -190,7 +103,7 @@ db.once('open', async () => {
       thumbnail: 'hatthree.jpg',
       price: 9.99,
       quantity: 100,
-      reviews: review[0]._id
+      reviews: []
     },
     {
       name: 'Sunnies Three',
@@ -200,7 +113,7 @@ db.once('open', async () => {
       thumbnail: 'sunthree.jpg',
       price: 1.99,
       quantity: 1000,
-      reviews: review[1]._id
+      reviews: []
     },
     {
       name: 'Watch It Four',
@@ -211,7 +124,7 @@ db.once('open', async () => {
       thumbnail: 'watchfour.jpg',
       price: 2.99,
       quantity: 1000,
-      reviews: review[2]._id
+      reviews: []
     },
     {
       name: 'Head Gear Four',
@@ -222,7 +135,7 @@ db.once('open', async () => {
       thumbnail: 'hatfour.jpg',
       price: 7.99,
       quantity: 100,
-      reviews: review[3]._id
+      reviews: []
     },
     {
       name: 'SunShadeFour',
@@ -233,18 +146,9 @@ db.once('open', async () => {
       thumbnail: 'sunfour.jpg',
       price: 9.99,
       quantity: 600,
-      reviews: review[4]._id
+      reviews: []
     }
   ]);
-
-  await User.updateOne({
-    _id: user[0]._id,
-    orders: [
-      {
-        products: [ products[0]._id, products[5]._id, products[6]._id ]
-      }
-    ]
-  })
 
   console.log('products seeded');
 

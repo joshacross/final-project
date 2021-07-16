@@ -142,11 +142,12 @@ const resolvers = {
       return { token, user };
     },
     addReview: async (parent, args, context) => {
-      //will this work? Question, how is user id getting passed in with args. i know we havent created it yet but
-      // do you have a process in mind?
       if (context.user) {
+        const fullName = context.user.firstName + ' ' + context.user.lastName;
           // maybe create({...args, context.user._id}) 
-        const { review } = await Review.create(args);
+        // const { review } = await Review.create(args);
+        //in theory...
+        const review = await Review.create({...args, author: fullName });
           const product = await Product.findByIdAndUpdate(
             
             review.product._id,
