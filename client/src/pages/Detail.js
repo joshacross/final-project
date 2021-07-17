@@ -156,7 +156,7 @@ useEffect(() => {
                 </Dialog>
             </p>
           <img
-            src={`/images/${currentProduct.image}`}
+            src={`/images/${currentProduct.thumbnail}`}
             alt={currentProduct.name}
           />
         </div>

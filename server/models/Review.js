@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const reviewSchema = new Schema({
-  user: {
+  product: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Product',
+    required: true
+  },
+  author: {
+    type: String,
     required: true
   },
   reviewText: {
