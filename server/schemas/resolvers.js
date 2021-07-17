@@ -43,7 +43,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
-          populate: "categoy",
+          populate: "category",
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -127,11 +127,10 @@ const resolvers = {
       );
     },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email: email });
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }
-
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
@@ -143,14 +142,16 @@ const resolvers = {
       return { token, user };
     },
     addReview: async (parent, args, context) => {
-      //will this work? Question, how is user id getting passed in with args. i know we havent created it yet but
-      // do you have a process in mind?
       if (context.user) {
+        const fullName = context.user.firstName + ' ' + context.user.lastName;
           // maybe create({...args, context.user._id}) 
-        const { review } = await Review.create(...args, context.user._id);
+        // const { review } = await Review.create(args);
+        //in theory...
+        const review = await Review.create({...args, author: fullName });
           const product = await Product.findByIdAndUpdate(
+            
+            review.product._id,
             {
-            _id: review.product._id,
               $push: { reviews: review },
               new: true
             }

@@ -15,7 +15,7 @@ export const QUERY_PRODUCTS = gql`
         }
         reviews {
           _id
-          user
+          author
           reviewText
         }
       }
@@ -37,7 +37,7 @@ export const QUERY_ALL_PRODUCTS = gql`
       }
       reviews {
         _id
-        user
+        author
         reviewText
       }
     }
@@ -71,7 +71,7 @@ export const QUERY_USER = gql`
           modelImage
           reviews {
             _id
-            user
+            author
             reviewText
           }
         }

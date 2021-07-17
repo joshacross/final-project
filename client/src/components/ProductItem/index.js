@@ -7,11 +7,13 @@ import { idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
   const {
-    image,
+    // modelImage,
+    thumbnail,
     name,
     _id,
     price,
-    quantity
+    quantity,
+    // reviews
   } = item;
 
   const [state, dispatch] = useStoreContext();
@@ -47,7 +49,7 @@ function ProductItem(item) {
       <Link to={`/products/${_id}`}>
         <img
           alt={name}
-          src={`/images/${image}`}
+          src={`/images/${thumbnail}`}
         />
         <p>{name}</p>
       </Link>

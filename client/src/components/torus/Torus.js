@@ -31,6 +31,4 @@ class Torus extends Component {
   }
 }
 
-render(<Torus />, document.getElementById('root'));
-
 export default Torus;
