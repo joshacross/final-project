@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_PRODUCTS } from '../utils/queries';
 // import spinner from '../assets/spinner.gif';
-import Cart from '../components/Cart';
 import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
@@ -20,13 +19,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 import { TOGGLE_QR_POPUP } from '../utils/actions';
 
 function Detail() {
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
 
   const [state, dispatch] = useStoreContext();
 
@@ -132,9 +127,9 @@ useEffect(() => {
               <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 View In Your Environment
               </Button>
+              
               <Dialog
                   open={state.qrOpen}
-                  TransitionComponent={Transition}
                   keepMounted
                   onClose={handleClose}
                   aria-labelledby="alert-dialog-slide-title"
@@ -144,7 +139,7 @@ useEffect(() => {
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
                       Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
-                      <img src={require('./QR/QR' + id + '.png')} alt="qr code"/>
+                      {/* <img src={require('./QR/' + id + '/QR' + id +'.png')} alt="qr code"/> */}
                       <img src={require("./QR/HIRO.jpeg")} alt="qr code"/>
                       
                     </DialogContentText>
@@ -164,7 +159,7 @@ useEffect(() => {
         </div>
       ) : null}
       {loading ? <h1>Loading...</h1> : null}
-      <Cart />
+      
     </>
   );
 }
