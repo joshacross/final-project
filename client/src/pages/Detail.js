@@ -143,8 +143,10 @@ useEffect(() => {
                   <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
-                      Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality
-                      <img src={'../../public/images/qr/' + id} alt="qr code"/>
+                      Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
+                      <img src={require('./QR/QR' + id + '.png')} alt="qr code"/>
+                      <img src={require("./QR/HIRO.jpeg")} alt="qr code"/>
+                      
                     </DialogContentText>
 
                   </DialogContent>

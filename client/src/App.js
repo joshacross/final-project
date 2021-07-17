@@ -93,24 +93,15 @@ function App() {
               {/* <Route exact path="/products/:id/ar" component={AR} /> */}
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
-              import HatOne from './components/ThreeHatOne';
-import HatTwo from './components/ThreeHatTwo';
-import HatThree from './components/ThreeHatThree';
-import SunOne from './components/ThreeSunOne';
-import SunTwo from './components/ThreeSunTwo';
-import SunThree from './components/ThreeSunThree';
-import WatchOne from './components/ThreeWatchOne';
-import WatchTwo from './components/ThreeWatchTwo';
-import WatchThree from './components/ThreeWatchThree';
-              <Route exact path="/ar/hatone" component={HatOne} />
-              <Route exact path="/ar/hattwo" component={HatTwo} />
-              <Route exact path="/ar/hatthree" component={HatThree} />
-              <Route exact path="/ar/sunone" component={SunOne} />
-              <Route exact path="/ar/suntwo" component={SunTwo} />
-              <Route exact path="/ar/sunthree" component={SunThree} />
-              <Route exact path="/ar/watchone" component={WatchOne} />
-              <Route exact path="/ar/watchtwo" component={WatchTwo} />
-              <Route exact path="/ar/watchthree" component={WatchThree} />
+              <Route exact path="/products/:id/ar" component={HatOne} />
+              <Route exact path="/products/:id/ar" component={HatTwo} />
+              <Route exact path="/products/:id/ar" component={HatThree} />
+              <Route exact path="/products/:id/ar" component={SunOne} />
+              <Route exact path="/products/:id/ar" component={SunTwo} />
+              <Route exact path="/products/:id/ar" component={SunThree} />
+              <Route exact path="/products/:id/ar" component={WatchOne} />
+              <Route exact path="/products/:id/ar" component={WatchTwo} />
+              <Route exact path="/products/:id/ar" component={WatchThree} />
 
               {/* <Route exact path="/threedee" component={ThreeDee} />
               <Route exact path="/shapes" component={Shapes} /> */}
