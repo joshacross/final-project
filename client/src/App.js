@@ -27,6 +27,7 @@ import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import AR from './components/Ar';
 import Hiro from './components/Hiro';
 import Earth from './components/earth';
 import ThreeDee from './components/3D';
@@ -79,6 +80,7 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/products/:id/ar" component={AR} />
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
               <Route exact path="/threedee" component={ThreeDee} />

@@ -24,5 +24,4 @@ function Threedee () {
     );
 }
 
-
 export default Threedee;
