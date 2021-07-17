@@ -1,5 +1,5 @@
 :root {
-  --primary: #232F3E;
+  --primary: #000000;
   --secondary: #F3A847;
   --tertiary: #B12704;
   --light: #fafafa;
@@ -118,6 +118,10 @@ span[role="img"] {
 
 form {
   width: 40%;
+}
+
+ul {
+  list-style-type: none;
 }
 
 input {

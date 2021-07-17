@@ -1,9 +1,33 @@
 import React from "react";
-import { Button, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Cart from '../Cart';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  navbar: {
+    backgroundColor: '#3da7bf'
+  },
+  nobullet: {
+    listStyleType: "none"
+  }
+}));
 
 function Nav() {
+
+  const classes = useStyles();
 
   function showNavigation() {
     if (Auth.loggedIn()) {
@@ -41,32 +65,24 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          Augmented Retail
-        </Link>
-      </h1>
-
-      <nav>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-
-            </IconButton>
-            <Typography variant="h6">
-              
-                <span role="img" aria-label="shopping bag">🛍️</span>
-                <a href="/">Augmented Retail</a>
-              
-            </Typography>
-            <Button color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar>
-        {showNavigation()}
-      </nav>
-    </header>
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.navbar}>
+        <Toolbar>
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton> */}
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/">
+              <span role="img" aria-label="shopping bag">🛍️ </span>
+              Augmented Retail
+            </Link>
+          </Typography>
+          
+          {showNavigation()}
+          <Cart />
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 
