@@ -1,15 +1,15 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import threedee from './threedee.gltf';
+import sunTwoImage from '../../../public/images/suntwo.jpeg';
 
-function Threedee () {
+function SunTwo () {
     return (
       <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
         <Marker parameters={{ preset: 'hiro' }}>
 
-          <a-assets-item img id="threedeeImage" src={threedee} />
+          <a-assets-item img id="sunTwoImage" src={sunTwoImage} />
 
-          <a-entity gltf-model={threedee} position="0 0 -2" src="#threedeeImage" radius="1" segments-height="53">
+          <a-sphere src="#sunTwoImage" radius="1" segments-height="53">
             <a-animation
               attribute="rotation"
               dur="3000"
@@ -17,11 +17,12 @@ function Threedee () {
               to="360 -90 90"
               easing="linear"
               repeat="indefinite" />
-          </a-entity>
+          </a-sphere>
 
         </Marker>
       </AFrameRenderer>
     );
 }
 
-export default Threedee;
+
+export default SunTwo;

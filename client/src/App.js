@@ -27,10 +27,20 @@ import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-import AR from './components/Ar';
+// import AR from './components/Ar';
 import Hiro from './components/Hiro';
 import Earth from './components/earth';
-import ThreeDee from './components/3D';
+// import ThreeDee from './components/3D';
+// import Shapes from './components/Shapes';
+import HatOne from './components/ThreeHatOne';
+import HatTwo from './components/ThreeHatTwo';
+import HatThree from './components/ThreeHatThree';
+import SunOne from './components/ThreeSunOne';
+import SunTwo from './components/ThreeSunTwo';
+import SunThree from './components/ThreeSunThree';
+import WatchOne from './components/ThreeWatchOne';
+import WatchTwo from './components/ThreeWatchTwo';
+import WatchThree from './components/ThreeWatchThree';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -80,10 +90,30 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
-              <Route exact path="/products/:id/ar" component={AR} />
+              {/* <Route exact path="/products/:id/ar" component={AR} /> */}
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
-              <Route exact path="/threedee" component={ThreeDee} />
+              import HatOne from './components/ThreeHatOne';
+import HatTwo from './components/ThreeHatTwo';
+import HatThree from './components/ThreeHatThree';
+import SunOne from './components/ThreeSunOne';
+import SunTwo from './components/ThreeSunTwo';
+import SunThree from './components/ThreeSunThree';
+import WatchOne from './components/ThreeWatchOne';
+import WatchTwo from './components/ThreeWatchTwo';
+import WatchThree from './components/ThreeWatchThree';
+              <Route exact path="/ar/hatone" component={HatOne} />
+              <Route exact path="/ar/hattwo" component={HatTwo} />
+              <Route exact path="/ar/hatthree" component={HatThree} />
+              <Route exact path="/ar/sunone" component={SunOne} />
+              <Route exact path="/ar/suntwo" component={SunTwo} />
+              <Route exact path="/ar/sunthree" component={SunThree} />
+              <Route exact path="/ar/watchone" component={WatchOne} />
+              <Route exact path="/ar/watchtwo" component={WatchTwo} />
+              <Route exact path="/ar/watchthree" component={WatchThree} />
+
+              {/* <Route exact path="/threedee" component={ThreeDee} />
+              <Route exact path="/shapes" component={Shapes} /> */}
           <Route component={NoMatch} />
             </Switch>
           </StoreProvider>
