@@ -1,6 +1,6 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import hatTwo from '../../../public/images/hattwo.jpeg';
+import hatTwo from './hattwo.jpeg';
 
 function HatTwo () {
     return (

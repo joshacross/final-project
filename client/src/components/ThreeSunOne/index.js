@@ -1,6 +1,6 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import sunOneImage from '../../../public/images/sunone.jpeg';
+import sunOneImage from './sunone.jpeg';
 
 function SunOne () {
     return (

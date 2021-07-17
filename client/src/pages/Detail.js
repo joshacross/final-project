@@ -144,7 +144,7 @@ useEffect(() => {
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
                       Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality
-                      <img src="../../public/images/Localhost.png" alt="qr code"/>
+                      <img src={'../../public/images/qr/' + id} alt="qr code"/>
                     </DialogContentText>
 
                   </DialogContent>

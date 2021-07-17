@@ -1,6 +1,6 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import watchThreeImage from '../../../public/images/watchthree.jpeg';
+import watchThreeImage from './watchthree.jpeg';
 
 function WatchThree () {
     return (

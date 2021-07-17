@@ -1,6 +1,6 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import hatThree from '../../../public/images/hatthree.jpeg';
+import hatThree from './hatthree.jpeg';
 
 function HatThree () {
     return (
