@@ -1,9 +1,48 @@
+// import React, { useState } from 'react';
+// import QRCode from 'qrcode';
+// import {Container } from 'material-ui';
+// const [imageUrl, setImageUrl] = useState('')
+// import { classes } from '@material-ui/styles';
 
+// function handleClickOpen() {
+    
+//     dispatch({ type: TOGGLE_QR_POPUP })
 
-const QRCode = require('qrcode')
+//     generateQRCode() = async () => {
+//         try {
+//           const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+//           setImageUrl(response);
+//         }
+//         catch (error) {
+//           console.log(error);
+//         };
+// }
 
-QRCode.toFile('public/assets/images/qr_code_ticket.png', `https://calm-escarpment-47526.herokuapp.com/${concert}`, {
-        }, function (err) {
-            if (err) throw err
-            console.log('qr created');
-        });
+// const handleClickOpen = () => {
+//     dispatch({ type: TOGGLE_QR_POPUP })
+    
+//     generateQRCode() = async () => {
+//         try {
+//           const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+//           setImageUrl(response);
+//         }
+//         catch (error) {
+//           console.log(error);
+//         };
+// }
+    
+//       return (
+//         <Container>
+//             <Button className={classes.btn} variant="contained" color="primary" onClick={() => generateQRCode()}>
+//                 View In Your Environment
+//             </Button>
+//             <img src={imageUrl} alt='img'/>
+//         </Container>
+//       );
+
+//     };
+// };
+
+// export default QRCodeComponent;
+
+// handleClickOpen.QRCodeComponent();
