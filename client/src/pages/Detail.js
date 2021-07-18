@@ -23,7 +23,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TOGGLE_QR_POPUP } from '../utils/actions';
 import QRCode from 'qrcode';
-const [imageUrl, setImageUrl] = useState('')
 
 function Detail() {
   const Transition = React.forwardRef(function Transition(props, ref) {
@@ -31,6 +30,7 @@ function Detail() {
   });
 
   const [state, dispatch] = useStoreContext();
+  const [imageUrl, setImageUrl] = useState('')
 
   const { id } = useParams();
 
@@ -104,32 +104,32 @@ useEffect(() => {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
-handleClickOpen(() => {
-    dispatch({ type: TOGGLE_QR_POPUP })
-    
-    generateQRCode() = async () => {
-        try {
-          const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
-          setImageUrl(response);
-        }
-        catch (error) {
-          console.log(error);
-        };
-      }
-});
+const handleClickOpen = () => {
+  dispatch({ type: TOGGLE_QR_POPUP });
+};
 
-  const handleClose = () => {
+const handleClose = () => {
     dispatch({ type: TOGGLE_QR_POPUP });
   };
 
-  const generateQRCode = async () => {
-    try {
-      const response = await QRCode.toDataURL('http://localhost:3000/products/id/ar');
-      console.log(response);
-    }
-    catch (error) {
-      console.log(error);
-    };
+const generateQRCode = async () => {
+  try {
+    const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+    setImageUrl(response);
+  }
+  catch (error) {
+    console.log(error);
+  };
+}
+
+  // const generateQRCode = async () => {
+  //   try {
+  //     const response = await QRCode.toDataURL('http://localhost:3000/products/id/ar');
+  //     console.log(response);
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   };
 
   return (
     <>
@@ -150,7 +150,7 @@ handleClickOpen(() => {
             >
               Remove from Cart
             </Button>
-              <Button variant="outlined" color="primary" onClick={ handleClickOpen, generateQRCode }>
+              <Button variant="outlined" color="primary" onClick={() => {handleClickOpen(); generateQRCode();}}>
                 View In Your Environment
               </Button>
               <Dialog
@@ -189,6 +189,6 @@ handleClickOpen(() => {
     </>
   );
 }
-}
+
 
 export default Detail;
