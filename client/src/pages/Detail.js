@@ -111,16 +111,14 @@ useEffect(() => {
     dispatch({ type: TOGGLE_QR_POPUP });
   };
 
-  const generateQRCode = () => {
-    const QRCode = require('qrcode')
-
-    QRCode.toFile('public/assets/images/qr_code_ticket.png', `http://localhost:3000/products/${id}/ar`, {
-            }, function (err) {
-                if (err) throw err
-                console.log('qr created');
-            });
-  };
-
+  const generateQRCode = async () => {
+    try {
+      const response = await QRCode.toDataURL('http://localhost:3000/products/id/ar');
+      console.log(response);
+    }
+    catch (error) {
+      console.log(error);
+    };
 
   return (
     <>
