@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
-import { idbPromise } from '../../utils/helpers';
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../actions';
+import { idbPromise } from '../helpers';
 
 // expects item component as a prop and will use that object's properties to populate JSX
 const CartItem = ({ item }) => {

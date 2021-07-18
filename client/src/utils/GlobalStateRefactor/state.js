@@ -4,6 +4,7 @@ import { CartItem } from './cartItem';
 import { Login } from './login';
 import { QRPopup } from './qrpopup';
 import { Product } from './product';
+import { Alert } from './alert';
 
 // context providers providerComposer function to take in all providers, and hide them from view
 // so you dont have to have a super nested tree of providers
