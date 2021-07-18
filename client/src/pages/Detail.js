@@ -164,10 +164,16 @@ const generateQRCode = async () => {
                   <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
-                      Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
-                      <img src={imageUrl} alt='img'/>
+                      In order to see {currentProduct.name} in your environment, please follow the instructions below*:
+                      <ol>
+                        <li>Using your camera app, scan the following QR Code with your mobile device.</li>
+                        <img src={imageUrl} alt='img'/>
+                        <li>Click on the link that appears, and will open up your browser.</li>
+                        <li>Point your mobile device at the image below the QR Code that says "Hiro."</li>
+                      </ol>
                       <img src={require('./QR/HIRO.jpeg')} alt='img'/>
-                      
+                      * Please note, the following augmented reality experience requires a mobile device.
+                      ** If you are on a mobile device, please click here to see the product in 3D.
                     </DialogContentText>
 
                   </DialogContent>
