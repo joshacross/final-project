@@ -1,20 +1,9 @@
-import React from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useStoreContext } from "../utils/GlobalState";
-var QRCode = require('qrcode.react');
 
-function QRCodeComponent () {
-    // const [ state, dispatch ] = useStoreContext();
 
-    // const { id } = useParams();
+const QRCode = require('qrcode')
 
-    // const [currentProduct, setCurrentProduct] = useState({});
-
-    React.render(
-    <QRCode value='https://google.com' />,
-    mountNode
-    );
-
-};
-
-export default QRCodeComponent;
+QRCode.toFile('public/assets/images/qr_code_ticket.png', `https://calm-escarpment-47526.herokuapp.com/${concert}`, {
+        }, function (err) {
+            if (err) throw err
+            console.log('qr created');
+        });

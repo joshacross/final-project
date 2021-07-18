@@ -22,8 +22,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TOGGLE_QR_POPUP } from '../utils/actions';
-import QRCodeComponent from '../components/QRCode';
-// var QRCode = require('qrcode.react');
+import QRCode from 'qrcode';
 
 function Detail() {
   const Transition = React.forwardRef(function Transition(props, ref) {
@@ -112,18 +111,16 @@ useEffect(() => {
     dispatch({ type: TOGGLE_QR_POPUP });
   };
 
-  // const mountNode = 'qrcode.png';
+  const generateQRCode = () => {
+    const QRCode = require('qrcode')
 
-  // const QREvent = async (handleClickOpen) => {
-  //   if (handleClickOpen) {
-  //   React.render(
-  //     <QRCode value={require('/products/' + {id} + '/ar')} />,
-  //     mountNode
-  //     );
-  //   } else {
-  //     return;
-  //   }
-  // };
+    QRCode.toFile('public/assets/images/qr_code_ticket.png', `http://localhost:3000/products/${id}/ar`, {
+            }, function (err) {
+                if (err) throw err
+                console.log('qr created');
+            });
+  };
+
 
   return (
     <>
@@ -144,7 +141,7 @@ useEffect(() => {
             >
               Remove from Cart
             </Button>
-              <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+              <Button variant="outlined" color="primary" onClick={ handleClickOpen, generateQRCode }>
                 View In Your Environment
               </Button>
               <Dialog
@@ -159,7 +156,8 @@ useEffect(() => {
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
                       Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
-                      <QRCodeComponent />
+                      <div id="qrCodeId">
+                      </div>
                       {/* <img src="qrcode.png" alt="image of a QR Code that you are to scan with a mobile device"/> */}
                       <img src={require("./QR/HIRO.jpeg")} alt="qr code"/>
                       
