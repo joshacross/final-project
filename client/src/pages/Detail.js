@@ -23,6 +23,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TOGGLE_QR_POPUP } from '../utils/actions';
 import QRCode from 'qrcode';
+const [imageUrl, setImageUrl] = useState('')
 
 function Detail() {
   const Transition = React.forwardRef(function Transition(props, ref) {
@@ -103,9 +104,19 @@ useEffect(() => {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
-  const handleClickOpen = () => {
+handleClickOpen(() => {
     dispatch({ type: TOGGLE_QR_POPUP })
-  };
+    
+    generateQRCode() = async () => {
+        try {
+          const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+          setImageUrl(response);
+        }
+        catch (error) {
+          console.log(error);
+        };
+      }
+});
 
   const handleClose = () => {
     dispatch({ type: TOGGLE_QR_POPUP });
@@ -154,10 +165,8 @@ useEffect(() => {
                   <DialogContent>
                     <DialogContentText id="alert-dialog-slide-discription">
                       Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
-                      <div id="qrCodeId">
-                      </div>
-                      {/* <img src="qrcode.png" alt="image of a QR Code that you are to scan with a mobile device"/> */}
-                      <img src={require("./QR/HIRO.jpeg")} alt="qr code"/>
+                      <img src={imageUrl} alt='img'/>
+                      <img src={require('./QR/HIRO.jpeg')} alt='img'/>
                       
                     </DialogContentText>
 
@@ -179,6 +188,7 @@ useEffect(() => {
       <Cart />
     </>
   );
+}
 }
 
 export default Detail;
