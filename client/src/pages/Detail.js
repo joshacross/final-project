@@ -12,7 +12,6 @@ import {
 } from "../utils/actions";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
-import spinner from '../assets/spinner.gif'
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -118,7 +117,7 @@ function Detail() {
         </div>
       ) : null}
       {
-        loading ? <img src={spinner} alt="loading" /> : null
+        loading ? <h3>Loading...</h3>: null
       }
       <Cart />
     </>

@@ -31,7 +31,7 @@ import OrderHistory from './pages/OrderHistory';
 
 //connect to server side
 const httpLink = createHttpLink({
-  uri: '/graphql'
+  uri: 'http://localhost:3001/graphQL'
 });
 
 //if error in client to server side requests...
