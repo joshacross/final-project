@@ -1,10 +1,11 @@
 import React from 'react';
-import { Cart } from './cart';
-import { CartItem } from './cartItem';
-import { Login } from './login';
-import { QRPopup } from './qrpopup';
-import { Product } from './product';
-import { Alert } from './alert';
+import { CartProvider } from './cart';
+import { CartItemProvider } from './cartItem';
+import { LoginProvider } from './login';
+import { QRPopupProvider } from './qrpopup';
+import { ProductProvider } from './product';
+import { CategoryProvider } from './category';
+import { AlertProvider } from './alert';
 
 // context providers providerComposer function to take in all providers, and hide them from view
 // so you dont have to have a super nested tree of providers
@@ -21,7 +22,7 @@ function ProviderComposer({ contexts, children }) {
 function ContextProvider({ children }) {
     return (
         <ProviderComposer
-            contexts={[<CartProvider />, <CartItemProvider />, <QRPopupProvider />, <LoginProvider />, <AlertProvider/>]}
+            contexts={[<CartProvider />, <CartItemProvider />, <QRPopupProvider />, <LoginProvider />, <ProductProvider/>, <CategoryProvider />, <AlertProvider/>]}
             >
                 {children}
             </ProviderComposer>
