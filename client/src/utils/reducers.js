@@ -9,7 +9,8 @@ import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   CLEAR_CART,
-  TOGGLE_CART
+  TOGGLE_CART,
+  TOGGLE_QR_POPUP
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -86,6 +87,12 @@ export const reducer = (state, action) => {
             ...state,
             cartOpen: !state.cartOpen
           };
+          // QRtoggleOpen
+          case TOGGLE_QR_POPUP:
+            return {
+              ...state,
+              qrOpen: !state.qrOpen
+            };
 
     default:
       return state;

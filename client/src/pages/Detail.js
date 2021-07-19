@@ -10,14 +10,28 @@ import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
-  UPDATE_PRODUCTS,
+  UPDATE_PRODUCTS
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
-
+import { Button } from '@material-ui/core';
+// import AlertDialogSlide from '../components/QRPopup';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import { TOGGLE_QR_POPUP } from '../utils/actions';
+import QRCode from 'qrcode';
 
 function Detail() {
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   const [state, dispatch] = useStoreContext();
+  const [imageUrl, setImageUrl] = useState('')
+
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({})
@@ -90,6 +104,33 @@ useEffect(() => {
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
+const handleClickOpen = () => {
+  dispatch({ type: TOGGLE_QR_POPUP });
+};
+
+const handleClose = () => {
+    dispatch({ type: TOGGLE_QR_POPUP });
+  };
+
+const generateQRCode = async () => {
+  try {
+    const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+    setImageUrl(response);
+  }
+  catch (error) {
+    console.log(error);
+  };
+}
+
+  // const generateQRCode = async () => {
+  //   try {
+  //     const response = await QRCode.toDataURL('http://localhost:3000/products/id/ar');
+  //     console.log(response);
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   };
+
   return (
     <>
       {currentProduct ? (
@@ -102,17 +143,49 @@ useEffect(() => {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
+            <Button onClick={addToCart}>Add to Cart</Button>
+            <Button
               disabled={!cart.find(p => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
-            </button>
-          </p>
+            </Button>
+              <Button variant="outlined" color="primary" onClick={() => {handleClickOpen(); generateQRCode();}}>
+                View In Your Environment
+              </Button>
+              <Dialog
+                  open={state.qrOpen}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-slide-title"
+                  aria-describedby="alert-dialog-slide-description"
+                >
+                  <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-discription">
+                      In order to see {currentProduct.name} in your environment, please follow the instructions below*:
+                      <ol>
+                        <li>Using your camera app, scan the following QR Code with your mobile device.</li>
+                        <img src={imageUrl} alt='img'/>
+                        <li>Click on the link that appears, and will open up your browser.</li>
+                        <li>Point your mobile device at the image below the QR Code that says "Hiro."</li>
+                      </ol>
+                      <img src={require('./QR/HIRO.jpeg')} alt='img'/>
+                      * Please note, the following augmented reality experience requires a mobile device.
+                      ** If you are on a mobile device, please click here to see the product in 3D.
+                    </DialogContentText>
 
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                      Go Back
+                    </Button>
+                </DialogActions>
+                </Dialog>
+            </p>
           <img
-            src={`/images/${currentProduct.image}`}
+            src={`/images/${currentProduct.thumbnail}`}
             alt={currentProduct.name}
           />
         </div>
@@ -122,5 +195,6 @@ useEffect(() => {
     </>
   );
 }
+
 
 export default Detail;

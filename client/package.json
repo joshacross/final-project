@@ -6,6 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "@material/top-app-bar": "^11.0.0",
     "@stripe/stripe-js": "^1.16.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -18,7 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-web-ar": "1.0.0-beta2",
-    "three": "^0.130.1"
+    "three": "^0.87.1"
   },
   "scripts": {
     "start": "react-scripts start",

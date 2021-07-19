@@ -9,11 +9,13 @@ import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typo
 
 function ProductItem(item) {
   const {
-    image,
+    // modelImage,
+    thumbnail,
     name,
     _id,
     price,
-    quantity
+    quantity,
+    // reviews
   } = item;
 
 const [state, dispatch] = useStoreContext();
@@ -50,8 +52,6 @@ const useStyles = makeStyles({
     borderRadius: 20,
   },
 });
-
-function ProductItem() {
   const classes = useStyles();
 
   return (
@@ -59,7 +59,7 @@ function ProductItem() {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={image}
+          image={thumbnail}
           alt="Teddy Bear"
           title="Contemplative Reptile"
           height="140"
@@ -80,7 +80,7 @@ function ProductItem() {
       </CardActions>
     </Card>
   );
-}}
+}
 
 
 
