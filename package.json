@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.3.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.1",
