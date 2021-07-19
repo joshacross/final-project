@@ -14,8 +14,9 @@ import {
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 import { Button } from '@material-ui/core';
-// import AlertDialogSlide from '../components/QRPopup';
+//material modal
 import Modal from '@material-ui/core/Modal';
+//for styling modal
 import { makeStyles } from '@material-ui/core/styles';
 import QRCode from 'qrcode';
 
@@ -115,6 +116,7 @@ function Detail() {
   }
 
   // fx to create modal style and set top and left
+  //with transform for popup location
   function getModalStyle() {
     const top = 50 + rand();
     const left = 50 + rand();
@@ -126,7 +128,7 @@ function Detail() {
     };
   }
 
-  //theme and make styles
+  //theme and make styles for the modal size, look etc.
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
@@ -139,24 +141,28 @@ function Detail() {
     },
   }));
 
-  //access the paper object with its key/value pairs through classes.paper
-  //call simple modal in the body to render for the first time hold the open and close function in constants
-  
-    const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
-    const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
+  //access the paper object with its key/value pairs through classes.paper from useStyles() line 132
+  const classes = useStyles();
 
-    const handleOpen = () => {
+  //render the modal on open and save in a local state
+  const [modalStyle] = React.useState(getModalStyle);
+  
+  //the opening and closing saved to a local state because
+  //this is the only place that needs it
+  const [open, setOpen] = React.useState(false);
+
+  // modal open (click function still activates QR code render)
+  const handleOpen = () => {
       setOpen(true);
-    };
+  };
 
-    const handleClose = () => {
+  // modal close
+  const handleClose = () => {
       setOpen(false);
-    };
+  };
   
 
-
+  // the inside of the modal saved to a variable
   const body = (
     <div style={modalStyle} className={classes.paper}>
     <h4 id="alert-dialog-slide-title">{currentProduct.name}</h4>
