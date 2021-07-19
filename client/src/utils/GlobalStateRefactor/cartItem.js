@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../actions';
 import { idbPromise } from '../helpers';
 
+
+export function CartItemProvider() {
 // expects item component as a prop and will use that object's properties to populate JSX
 const CartItem = ({ item }) => {
 
@@ -49,25 +51,25 @@ const CartItem = ({ item }) => {
       </div>
       <div>
         <div>{item.name}, ${item.price}</div>
-        <div>
-          <span>Qty:</span>
-          <input
-            type="number"
-            placeholder="1"
-            value={item.purchaseQuantity}
-            onChange={onChange}
-          />
-          <span
-            role="img"
-            aria-label="trash"
-            onClick={() => removeFromCart(item)}
-          >
-            🗑️
-          </span>
+          <div>
+            <span>Qty:</span>
+            <input
+              type="number"
+              placeholder="1"
+              value={item.purchaseQuantity}
+              onChange={onChange}
+            />
+            <span
+              role="img"
+              aria-label="trash"
+              onClick={() => removeFromCart(item)}
+            >
+              🗑️
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
-export default CartItem;
+}
