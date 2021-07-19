@@ -15,19 +15,12 @@ import {
 import { idbPromise } from '../utils/helpers';
 import { Button } from '@material-ui/core';
 // import AlertDialogSlide from '../components/QRPopup';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
-import { TOGGLE_QR_POPUP } from '../utils/actions';
+import Modal from '@material-ui/core/Modal';
+import { makeStyles } from '@material-ui/core/styles';
 import QRCode from 'qrcode';
 
 function Detail() {
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
+  
 
   const [state, dispatch] = useStoreContext();
   const [imageUrl, setImageUrl] = useState('')
@@ -40,39 +33,39 @@ function Detail() {
 
   const { products, cart } = state;
 
-useEffect(() => {
-  // already in global store
-  if (products.length) {
-    setCurrentProduct(products.find(product => product._id === id));
-  } 
-  // retrieved from server
-  else if (data) {
-    dispatch({
-      type: UPDATE_PRODUCTS,
-      products: data.products
-    });
-
-    data.products.forEach((product) => {
-      idbPromise('products', 'put', product);
-    });
-  }
-  // get cache from idb
-  else if (!loading) {
-    idbPromise('products', 'get').then((indexedProducts) => {
+  useEffect(() => {
+    // already in global store
+    if (products.length) {
+      setCurrentProduct(products.find(product => product._id === id));
+    }
+    // retrieved from server
+    else if (data) {
       dispatch({
         type: UPDATE_PRODUCTS,
-        products: indexedProducts
+        products: data.products
       });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-}, [products, data, loading, dispatch, id]);
+
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      });
+    }
+    // get cache from idb
+    else if (!loading) {
+      idbPromise('products', 'get').then((indexedProducts) => {
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts
+        });
+      })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [products, data, loading, dispatch, id]);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
-  
+
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -103,33 +96,82 @@ useEffect(() => {
     // upon removal from cart, delete the item from IndexedDB using the 'currentProduct._id' to locate what to remove
     idbPromise('cart', 'delete', { ...currentProduct });
   };
+  
 
-const handleClickOpen = () => {
-  dispatch({ type: TOGGLE_QR_POPUP });
-};
-
-const handleClose = () => {
-    dispatch({ type: TOGGLE_QR_POPUP });
-  };
-
-const generateQRCode = async () => {
-  try {
-    const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
-    setImageUrl(response);
+  const generateQRCode = async () => {
+    try {
+      const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+      setImageUrl(response);
+    }
+    catch (error) {
+      console.log(error);
+    };
   }
-  catch (error) {
-    console.log(error);
-  };
-}
 
-  // const generateQRCode = async () => {
-  //   try {
-  //     const response = await QRCode.toDataURL('http://localhost:3000/products/id/ar');
-  //     console.log(response);
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   };
+
+  //set random modal style location
+  function rand() {
+    return Math.round(Math.random() * 20) - 10;
+  }
+
+  // fx to create modal style and set top and left
+  function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
+  //theme and make styles
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 'auto',
+      height: 'auto',
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+
+  //access the paper object with its key/value pairs through classes.paper
+  //call simple modal in the body to render for the first time hold the open and close function in constants
+  
+    const classes = useStyles();
+    // getModalStyle is not a pure function, we roll the style only on the first render
+    const [modalStyle] = React.useState(getModalStyle);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+
+
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+    <h4 id="alert-dialog-slide-title">{currentProduct.name}</h4>
+            <div id="alert-dialog-slide-discription">
+              <p>In order to see {currentProduct.name} in your environment, please follow the instructions below:</p>
+              <p>Using your camera app, scan the following QR Code with your mobile device.</p>
+              <img src={imageUrl} alt='img' />
+              <p>Click on the link that appears, and will open up your browser.</p>
+              <p>Point your mobile device at the image below the QR Code that says "Hiro."</p>
+              <img src={require('./QR/HIRO.jpeg')} alt='img' height='200' width='200' />
+              <p>* Please note, the following augmented reality experience requires a mobile device.</p>
+              <p>** If you are on a mobile device, please click here to see the product in 3D.</p>
+      </div>
+      </div>
+  );
 
   return (
     <>
@@ -143,47 +185,29 @@ const generateQRCode = async () => {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <Button onClick={addToCart}>Add to Cart</Button>
-            <Button
-              disabled={!cart.find(p => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
+          
+          <Button onClick={addToCart}>
+            Add to Cart
+          </Button>
+          <Button
+            disabled={!cart.find(p => p._id === currentProduct._id)}
+            onClick={removeFromCart}
+          >
+            Remove from Cart
+          </Button>
+          <Button variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
+            View In Your Environment
             </Button>
-              <Button variant="outlined" color="primary" onClick={() => {handleClickOpen(); generateQRCode();}}>
-                View In Your Environment
-              </Button>
-              <Dialog
-                  open={state.qrOpen}
-                  TransitionComponent={Transition}
-                  keepMounted
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-slide-title"
-                  aria-describedby="alert-dialog-slide-description"
-                >
-                  <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-discription">
-                      In order to see {currentProduct.name} in your environment, please follow the instructions below*:
-                      <ol>
-                        <li>Using your camera app, scan the following QR Code with your mobile device.</li>
-                        <img src={imageUrl} alt='img'/>
-                        <li>Click on the link that appears, and will open up your browser.</li>
-                        <li>Point your mobile device at the image below the QR Code that says "Hiro."</li>
-                      </ol>
-                      <img src={require('./QR/HIRO.jpeg')} alt='img'/>
-                      * Please note, the following augmented reality experience requires a mobile device.
-                      ** If you are on a mobile device, please click here to see the product in 3D.
-                    </DialogContentText>
-
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                      Go Back
-                    </Button>
-                </DialogActions>
-                </Dialog>
-            </p>
+          </p>
+          <Modal
+            open={open}
+            keepMounted
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            {body}
+          </Modal>
           <img
             src={`/images/${currentProduct.thumbnail}`}
             alt={currentProduct.name}
