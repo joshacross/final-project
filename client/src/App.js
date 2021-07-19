@@ -27,13 +27,11 @@ import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-import Hiro from './components/Hiro';
-import Earth from './components/Earth';
-import OneAR from './components/OneAR';
+
 
 //connect to server side
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphQL'
+  uri: '/graphql'
 });
 
 //if error in client to server side requests...
@@ -80,9 +78,6 @@ function App() {
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
               {/* <Route exact path="/products/:id/ar" component={AR} /> */}
-              <Route exact path="/ar" component={Hiro} />
-              <Route exact path="/ar/earth" component={Earth} />
-              <Route exact path="/products/:id/ar" component={OneAR} />
               {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
