@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import { Switch, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_PRODUCTS } from '../../utils/queries';
@@ -9,9 +9,9 @@ import {
 } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
-import hatOne from './images/hatone.jpeg';
-import hatTwo from './images/hattwo.jpeg';
-import hatThree from './images/hatthree.jpeg';
+// import hatOne from './images/hatone.jpeg';
+// import hatTwo from './images/hattwo.jpeg';
+// import hatThree from './images/hatthree.jpeg';
 // import image from './hattwo.jpeg'
 
 // you have to import name of product and set it equal to import 
@@ -101,27 +101,43 @@ function OneAR () {
 //   }
 // }
 
-const img = `./images/${currentProduct.thumbnail}`
+  // const img = `/images/${currentProduct.thumbnail}`
+  
 
-const renderImage = () => {
-  switch (img) {
-    case hatOne:
-      console.log('hatone');
-      break;
-    case hatTwo:
-      console.log('hattwo');
-      break;
-    case hatThree:
-      console.log('hatthree');
-      break;
+  const renderImage = () => {
+    const value = currentProduct.thumbnail;
+  switch (value) {
+    case 'hatone.jpeg':
+      return "/images/hatone.jpeg";
+    case 'hattwo.jpeg':
+      return "/images/hattwo.jpeg";
+    case 'hatthree.jpeg':
+      return "/images/hatthree.jpeg";
+    case 'hatfour.jpeg':
+      return "/images/hatfour.jpeg";
+    case 'sunone.jpeg':
+      return "/images/sunone.jpeg";
+    case 'suntwo.jpeg':
+      return "/images/suntwo.jpeg";
+    case 'sunthree.jpeg':
+      return "/images/sunthree.jpeg";
+    case 'sunfour.jpeg':
+      return "/images/sunfour.jpeg";
+    case 'watchone.jpeg':
+      return "/images/watchone.jpeg";
+    case 'watchtwo.jpeg':
+      return "/images/watchtwo.jpeg";
+    case 'watchthree.jpeg':
+      return "/images/watchthree.jpeg";
+    case 'watchfour.jpeg':
+      return "/images/watchfour.jpeg";
     default:
-      console.log('hatthree');
-      break
+      return "/images/error.jpg";
   }
 }
 
 
-console.log(img);
+
 
 
     return (
@@ -131,7 +147,7 @@ console.log(img);
         <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
           <Marker parameters={{ preset: 'hiro' }}>
 
-            <a-assets-item img id="AR" src={renderImage} alt={currentProduct.name} />
+            <a-assets-item img id="AR" src={renderImage()} alt={currentProduct.name} />
 
             <a-sphere src="#AR" radius="1" segments-height="53">
               <a-animation
