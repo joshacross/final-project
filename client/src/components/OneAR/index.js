@@ -9,13 +9,8 @@ import {
 } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
-// import hatOne from './images/hatone.jpeg';
-// import hatTwo from './images/hattwo.jpeg';
-// import hatThree from './images/hatthree.jpeg';
-// import image from './hattwo.jpeg'
 
 // you have to import name of product and set it equal to import 
-
 
 function OneAR () {
   const [state, dispatch] = useStoreContext();
@@ -60,86 +55,6 @@ function OneAR () {
   }
   }, [products, data, loading, dispatch, id]);
 
-// // var image =  "";
-// console.log(data);
-// console.log(`/images/${currentProduct.thumbnail}`);
-
-// const image = `/images/${currentProduct.thumbnail}`
-// // if there is undefined data , else render div with the word loading...
-// // when we get data, render component
-
-
-// Switch (`/images/${currentProduct}.thumbnail` = {
-//   case "*/hatone.jpg":
-//     renderImage();
-//     break;
-//   case {hatOne}:
-//     renderImage();
-//     break;
-//   case "*/hatthree.jpg":
-//     returnImage();
-//     break;
-// });
-
-
-
-// renderImage() {
-//   switch (img) {
-//     case '*/hatone.jpg':
-//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
-//     case '*/hatone.jpg':
-//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
-//     case '*/hatone.jpg':
-//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
-//     case '*/hatone.jpg':
-//       return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
-//     // .. rest of the case
-//     default:
-//         return (
-//             <Text>{'Null'}</Text>
-//         );
-//   }
-// }
-
-  // const img = `/images/${currentProduct.thumbnail}`
-  
-
-  const renderImage = () => {
-    const value = currentProduct.thumbnail;
-  switch (value) {
-    case 'hatone.jpeg':
-      return "/images/hatone.jpeg";
-    case 'hattwo.jpeg':
-      return "/images/hattwo.jpeg";
-    case 'hatthree.jpeg':
-      return "/images/hatthree.jpeg";
-    case 'hatfour.jpeg':
-      return "/images/hatfour.jpeg";
-    case 'sunone.jpeg':
-      return "/images/sunone.jpeg";
-    case 'suntwo.jpeg':
-      return "/images/suntwo.jpeg";
-    case 'sunthree.jpeg':
-      return "/images/sunthree.jpeg";
-    case 'sunfour.jpeg':
-      return "/images/sunfour.jpeg";
-    case 'watchone.jpeg':
-      return "/images/watchone.jpeg";
-    case 'watchtwo.jpeg':
-      return "/images/watchtwo.jpeg";
-    case 'watchthree.jpeg':
-      return "/images/watchthree.jpeg";
-    case 'watchfour.jpeg':
-      return "/images/watchfour.jpeg";
-    default:
-      return "/images/error.jpg";
-  }
-}
-
-
-
-
-
     return (
 
       <>
@@ -147,8 +62,37 @@ function OneAR () {
         <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
           <Marker parameters={{ preset: 'hiro' }}>
 
-            <a-assets-item img id="AR" src={renderImage()} alt={currentProduct.name} />
-
+              {currentProduct.thumbnail === undefined ? (
+                <a-assets-item img id="AR" src="/images/error.jpg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'hatone.jpeg' ? (
+                <a-assets-item img id="AR" src="/images/hatone.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'hattwo.jpeg' ? (
+                <a-assets-item img id="AR" src="/images/hattwo.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'hatthree.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/hatthree.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'hatfour.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/hatfour.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'sunone.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/sunone.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'suntwo.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/suntwo.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'sunthree.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/sunthree.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'sunfour.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/sunfour.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'watchone.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/watchone.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'watchtwo.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/watchtwo.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'watchthree.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/watchthree.jpeg" alt={currentProduct.name} />
+              ) : (currentProduct.thumbnail === 'watchfour.jpeg' ? (
+              <a-assets-item img id="AR" src="/images/watchfour.jpeg" alt={currentProduct.name} />
+                ) : <a-assets-item img id="AR" src="/images/error.jpg" alt={currentProduct.name} />
+                ))))))))))))
+              
+              }
+              
             <a-sphere src="#AR" radius="1" segments-height="53">
               <a-animation
                 attribute="rotation"
