@@ -56,44 +56,12 @@ function OneAR () {
   }, [products, data, loading, dispatch, id]);
 
     return (
-
       <>
         { currentProduct !== {} ? (
         <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
           <Marker parameters={{ preset: 'hiro' }}>
-
-              {currentProduct.thumbnail === undefined ? (
-                <a-assets-item img id="AR" src="/images/error.jpg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'hatone.jpeg' ? (
-                <a-assets-item img id="AR" src="/images/hatone.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'hattwo.jpeg' ? (
-                <a-assets-item img id="AR" src="/images/hattwo.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'hatthree.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/hatthree.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'hatfour.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/hatfour.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'sunone.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/sunone.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'suntwo.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/suntwo.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'sunthree.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/sunthree.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'sunfour.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/sunfour.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'watchone.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/watchone.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'watchtwo.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/watchtwo.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'watchthree.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/watchthree.jpeg" alt={currentProduct.name} />
-              ) : (currentProduct.thumbnail === 'watchfour.jpeg' ? (
-              <a-assets-item img id="AR" src="/images/watchfour.jpeg" alt={currentProduct.name} />
-                ) : <a-assets-item img id="AR" src="/images/error.jpg" alt={currentProduct.name} />
-                ))))))))))))
               
-              }
-              
-            <a-sphere src="#AR" radius="1" segments-height="53">
+            <a-sphere src={`/images/${currentProduct.thumbnail}`} radius="1" segments-height="53">
               <a-animation
                 attribute="rotation"
                 dur="3000"
