@@ -48,9 +48,18 @@ const addToCart = () => {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 200,
     borderRadius: 20,
+    margin: 20,
+    boxShadow: '0 3px 5px 2px rgba(52, 122, 235, .3)',
+    alignItems: 'spaceAround',
   },
+  media: {
+    height: 150,
+  },
+  actions: {
+    justifyContent: 'center',
+  }
 });
   const classes = useStyles();
 
@@ -58,11 +67,9 @@ const useStyles = makeStyles({
     <Card className={classes.root} variant='outlined'>
       <CardActionArea>
         <CardMedia
-          component="img"
-          image={thumbnail}
-          alt="Teddy Bear"
-          title="Contemplative Reptile"
-          height="140"
+          className={classes.media}
+          image={`/images/${thumbnail}`}
+          alt={name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -70,7 +77,7 @@ const useStyles = makeStyles({
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.actions}>
         <Typography size="small">
           {price}
         </Typography>
