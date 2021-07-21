@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import { useParams } from 'react-router-dom';
+import { Switch, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_PRODUCTS } from '../../utils/queries';
@@ -9,6 +9,11 @@ import {
 } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
+import hatOne from './images/hatone.jpeg';
+import hatTwo from './images/hattwo.jpeg';
+import hatThree from './images/hatthree.jpeg';
+// import image from './hattwo.jpeg'
+
 // you have to import name of product and set it equal to import 
 
 
@@ -55,25 +60,95 @@ function OneAR () {
   }
   }, [products, data, loading, dispatch, id]);
 
+// // var image =  "";
+// console.log(data);
+// console.log(`/images/${currentProduct.thumbnail}`);
+
+// const image = `/images/${currentProduct.thumbnail}`
+// // if there is undefined data , else render div with the word loading...
+// // when we get data, render component
+
+
+// Switch (`/images/${currentProduct}.thumbnail` = {
+//   case "*/hatone.jpg":
+//     renderImage();
+//     break;
+//   case {hatOne}:
+//     renderImage();
+//     break;
+//   case "*/hatthree.jpg":
+//     returnImage();
+//     break;
+// });
+
+
+
+// renderImage() {
+//   switch (img) {
+//     case '*/hatone.jpg':
+//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
+//     case '*/hatone.jpg':
+//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
+//     case '*/hatone.jpg':
+//     return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
+//     case '*/hatone.jpg':
+//       return (<Image source={require(`/images/${currentProduct.thumbnail}`)}/> );
+//     // .. rest of the case
+//     default:
+//         return (
+//             <Text>{'Null'}</Text>
+//         );
+//   }
+// }
+
+const img = `./images/${currentProduct.thumbnail}`
+
+const renderImage = () => {
+  switch (img) {
+    case hatOne:
+      console.log('hatone');
+      break;
+    case hatTwo:
+      console.log('hattwo');
+      break;
+    case hatThree:
+      console.log('hatthree');
+      break;
+    default:
+      console.log('hatthree');
+      break
+  }
+}
+
+
+console.log(img);
+
+
     return (
-      <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
-        <Marker parameters={{ preset: 'hiro' }}>
 
-          <a-assets-item img id="AR" src={`/images/${currentProduct.thumbnail}`} alt={currentProduct.name} />
+      <>
+        { currentProduct !== {} ? (
+        <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
+          <Marker parameters={{ preset: 'hiro' }}>
 
-          <a-sphere src="#AR" radius="1" segments-height="53">
-            <a-animation
-              attribute="rotation"
-              dur="3000"
-              from="1 -90 90"
-              to="360 -90 90"
-              easing="linear"
-              repeat="indefinite" />
-          </a-sphere>
+            <a-assets-item img id="AR" src={renderImage} alt={currentProduct.name} />
 
-        </Marker>
-      </AFrameRenderer>
+            <a-sphere src="#AR" radius="1" segments-height="53">
+              <a-animation
+                attribute="rotation"
+                dur="3000"
+                from="1 -90 90"
+                to="360 -90 90"
+                easing="linear"
+                repeat="indefinite" />
+            </a-sphere>
+
+          </Marker>
+        </AFrameRenderer>) : (<h1>Loading...</h1>)
+        }
+    </>
     );
+
 }
 
 export default OneAR;
