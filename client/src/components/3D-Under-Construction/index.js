@@ -1,6 +1,6 @@
 import React from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
-import threedee from './threedee.gltf';
+import threedee from './threedee.glb';
 
 function Threedee () {
     return (

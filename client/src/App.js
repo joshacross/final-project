@@ -30,6 +30,7 @@ import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
 import Earth from './components/Earth';
 import OneAR from './components/OneAR';
+import Threedee from './components/3D-Under-Construction';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -83,6 +84,7 @@ function App() {
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
               <Route exact path="/products/:id/ar" component={OneAR} />
+              <Route exact path="/ar/threedee" component={Threedee} />
               {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
