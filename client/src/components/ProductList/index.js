@@ -6,6 +6,9 @@ import { QUERY_PRODUCTS } from '../../utils/queries';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
+import { Grid } from '@material-ui/core';
+import CategoryMenu from '../CategoryMenu';
+
 
 function ProductList() {
   // execute useStoreContext to retrieve global state object and dispatch to update
@@ -14,9 +17,9 @@ function ProductList() {
   const { currentCategory } = state;
   // useEffect hook to wait for our useQuery to come in
   const { loading, data } = useQuery(QUERY_PRODUCTS);
-  
+
   useEffect(() => {
-      // once useQuery data comes in, it goes from undefined to having value
+    // once useQuery data comes in, it goes from undefined to having value
     if (data) {
       // instruct reducer that it's the UPDATE_PRODUCTS action
       // should have an array of product data to our global store
@@ -38,24 +41,26 @@ function ProductList() {
           products: products
         });
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .catch((error) => {
+          console.error(error);
+        });
     }
     // useStoreContext() executes again giving us the product data needed to display products on the page
   }, [data, loading, dispatch]);
-  
+
   function filterProducts() {
     if (!currentCategory) {
       return state.products;
     }
-  
+
     return state.products.filter(product => product.category._id === currentCategory);
   }
 
   return (
+    <Grid>
     <div className="my-2">
       <h2>Our Products:</h2>
+      <CategoryMenu />
       {state.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
@@ -75,6 +80,7 @@ function ProductList() {
       )}
       {loading ? <h1>Loading...</h1> : null}
     </div>
+    </Grid>
   );
 }
 

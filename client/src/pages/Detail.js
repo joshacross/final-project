@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_PRODUCTS } from '../utils/queries';
 // import spinner from '../assets/spinner.gif';
-import Cart from '../components/Cart';
 import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
@@ -221,7 +220,7 @@ function Detail() {
         </div>
       ) : null}
       {loading ? <h1>Loading...</h1> : null}
-      <Cart />
+      
     </>
   );
 }

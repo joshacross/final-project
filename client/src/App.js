@@ -16,21 +16,21 @@ import {
 //error handling for our client server routing
 import { onError } from "@apollo/client/link/error";
 import { setContext } from '@apollo/client/link/context';
-
+import "./styles/index.css";
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Nav from './components/Nav';
 import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
-import Earth from './components/Earth';
+import Earth from './components/earth';
 import OneAR from './components/OneAR';
-import Threedee from './components/3D-Under-Construction';
+// import Threedee from './components/3D-Under-Construction';
+import Nav from './components/Nav';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -84,7 +84,7 @@ function App() {
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
               <Route exact path="/products/:id/ar" component={OneAR} />
-              <Route exact path="/ar/threedee" component={Threedee} />
+              {/* <Route exact path="/ar/threedee" component={Threedee} /> */}
               {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
