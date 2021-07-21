@@ -10,8 +10,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client'
 import { IconButton } from '@material-ui/core';
 import ShoppingCart from '@material-ui/icons/ShoppingCartOutlined'
-
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe(process.env.STRIPE_URI1);
 
 
 const Cart = () => {

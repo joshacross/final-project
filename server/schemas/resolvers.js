@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Order, Review } = require("../models");
 const { signToken } = require("../utils/auth");
-const { STRIPE_URI } = require("../.env");
+const STRIPE_URI = require(process.env.STRIPE_URI2);
 const stripe = require("stripe")
 console.log(STRIPE_URI);
 
