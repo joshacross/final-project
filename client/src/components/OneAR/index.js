@@ -55,8 +55,13 @@ function OneAR () {
   }
   }, [products, data, loading, dispatch, id]);
 
-    return (
-      <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
+  
+
+  return (
+    <>
+      
+      {currentProduct ? 
+        (<AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
         <Marker parameters={{ preset: 'hiro' }}>
 
           <a-assets-item img id="AR" src={`/images/${currentProduct.thumbnail}`} alt={currentProduct.name} />
@@ -72,7 +77,8 @@ function OneAR () {
           </a-sphere>
 
         </Marker>
-      </AFrameRenderer>
+      </AFrameRenderer>): <h4>Still Loading...</h4>}
+      </>
     );
 }
 
