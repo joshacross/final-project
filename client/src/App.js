@@ -27,7 +27,7 @@ import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
-import Earth from './components/earth';
+import Earth from './components/Earth';
 import OneAR from './components/OneAR';
 // import Threedee from './components/3D-Under-Construction';
 import Nav from './components/Nav';
