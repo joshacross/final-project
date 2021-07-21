@@ -13,17 +13,17 @@ import {
 } from '../utils/actions';
 import { idbPromise } from '../utils/helpers';
 import { Button } from '@material-ui/core';
-// import AlertDialogSlide from '../components/QRPopup';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { TOGGLE_QR_POPUP } from '../utils/actions';
+//material modal
+import Modal from '@material-ui/core/Modal';
+//for styling modal
+import { makeStyles } from '@material-ui/core/styles';
+import QRCode from 'qrcode';
 
 function Detail() {
+  
 
   const [state, dispatch] = useStoreContext();
+  const [imageUrl, setImageUrl] = useState('')
 
   const { id } = useParams();
 
@@ -33,39 +33,39 @@ function Detail() {
 
   const { products, cart } = state;
 
-useEffect(() => {
-  // already in global store
-  if (products.length) {
-    setCurrentProduct(products.find(product => product._id === id));
-  } 
-  // retrieved from server
-  else if (data) {
-    dispatch({
-      type: UPDATE_PRODUCTS,
-      products: data.products
-    });
-
-    data.products.forEach((product) => {
-      idbPromise('products', 'put', product);
-    });
-  }
-  // get cache from idb
-  else if (!loading) {
-    idbPromise('products', 'get').then((indexedProducts) => {
+  useEffect(() => {
+    // already in global store
+    if (products.length) {
+      setCurrentProduct(products.find(product => product._id === id));
+    }
+    // retrieved from server
+    else if (data) {
       dispatch({
         type: UPDATE_PRODUCTS,
-        products: indexedProducts
+        products: data.products
       });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-}, [products, data, loading, dispatch, id]);
+
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      });
+    }
+    // get cache from idb
+    else if (!loading) {
+      idbPromise('products', 'get').then((indexedProducts) => {
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts
+        });
+      })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [products, data, loading, dispatch, id]);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
-  
+
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -96,14 +96,87 @@ useEffect(() => {
     // upon removal from cart, delete the item from IndexedDB using the 'currentProduct._id' to locate what to remove
     idbPromise('cart', 'delete', { ...currentProduct });
   };
+  
 
-  const handleClickOpen = () => {
-    dispatch({ type: TOGGLE_QR_POPUP });
+  const generateQRCode = async () => {
+    try {
+      const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+      setImageUrl(response);
+    }
+    catch (error) {
+      console.log(error);
+    };
+  }
+
+
+  //set random modal style location
+  function rand() {
+    return Math.round(Math.random() * 20) - 10;
+  }
+
+  // fx to create modal style and set top and left
+  //with transform for popup location
+  function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
+  //theme and make styles for the modal size, look etc.
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 'auto',
+      height: 'auto',
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+
+  //access the paper object with its key/value pairs through classes.paper from useStyles() line 132
+  const classes = useStyles();
+
+  //render the modal on open and save in a local state
+  const [modalStyle] = React.useState(getModalStyle);
+  
+  //the opening and closing saved to a local state because
+  //this is the only place that needs it
+  const [open, setOpen] = React.useState(false);
+
+  // modal open (click function still activates QR code render)
+  const handleOpen = () => {
+      setOpen(true);
   };
 
+  // modal close
   const handleClose = () => {
-    dispatch({ type: TOGGLE_QR_POPUP });
+      setOpen(false);
   };
+  
+
+  // the inside of the modal saved to a variable
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+    <h4 id="alert-dialog-slide-title">{currentProduct.name}</h4>
+            <div id="alert-dialog-slide-discription">
+              <p>In order to see {currentProduct.name} in your environment, please follow the instructions below:</p>
+              <p>Using your camera app, scan the following QR Code with your mobile device.</p>
+              <img src={imageUrl} alt='img' />
+              <p>Click on the link that appears, and will open up your browser.</p>
+              <p>Point your mobile device at the image below the QR Code that says "Hiro."</p>
+              <img src={require('./QR/HIRO.jpeg')} alt='img' height='200' width='200' />
+              <p>* Please note, the following augmented reality experience requires a mobile device.</p>
+              <p>** If you are on a mobile device, please click here to see the product in 3D.</p>
+      </div>
+      </div>
+  );
 
   return (
     <>
@@ -117,41 +190,29 @@ useEffect(() => {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <Button onClick={addToCart}>Add to Cart</Button>
-            <Button
-              disabled={!cart.find(p => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
+          
+          <Button onClick={addToCart}>
+            Add to Cart
+          </Button>
+          <Button
+            disabled={!cart.find(p => p._id === currentProduct._id)}
+            onClick={removeFromCart}
+          >
+            Remove from Cart
+          </Button>
+          <Button variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
+            View In Your Environment
             </Button>
-              <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                View In Your Environment
-              </Button>
-              
-              <Dialog
-                  open={state.qrOpen}
-                  keepMounted
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-slide-title"
-                  aria-describedby="alert-dialog-slide-description"
-                >
-                  <DialogTitle id="alert-dialog-slide-title">{currentProduct.name}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-discription">
-                      Scan the QR Code with your mobile device below to see {currentProduct.name} in your environment using Augmented Reality. After you scan the code, please scroll to the Hiro image below the QR code.
-                      {/* <img src={require('./QR/' + id + '/QR' + id +'.png')} alt="qr code"/> */}
-                      <img src={require("./QR/HIRO.jpeg")} alt="qr code"/>
-                      
-                    </DialogContentText>
-
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                      Go Back
-                    </Button>
-                </DialogActions>
-                </Dialog>
-            </p>
+          </p>
+          <Modal
+            open={open}
+            keepMounted
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            {body}
+          </Modal>
           <img
             src={`/images/${currentProduct.thumbnail}`}
             alt={currentProduct.name}
@@ -163,5 +224,6 @@ useEffect(() => {
     </>
   );
 }
+
 
 export default Detail;

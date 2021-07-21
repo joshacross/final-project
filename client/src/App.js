@@ -26,21 +26,9 @@ import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-// import AR from './components/Ar';
 import Hiro from './components/Hiro';
-import Earth from './components/Earth';
-import Nav from './components/Nav';
-// import ThreeDee from './components/3D';
-// import Shapes from './components/Shapes';
-import HatOne from './components/ThreeHatOne';
-import HatTwo from './components/ThreeHatTwo';
-import HatThree from './components/ThreeHatThree';
-import SunOne from './components/ThreeSunOne';
-import SunTwo from './components/ThreeSunTwo';
-import SunThree from './components/ThreeSunThree';
-import WatchOne from './components/ThreeWatchOne';
-import WatchTwo from './components/ThreeWatchTwo';
-import WatchThree from './components/ThreeWatchThree';
+import Earth from './components/earth';
+import OneAR from './components/OneAR';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -93,15 +81,15 @@ function App() {
               {/* <Route exact path="/products/:id/ar" component={AR} /> */}
               <Route exact path="/ar" component={Hiro} />
               <Route exact path="/ar/earth" component={Earth} />
-              <Route exact path="/products/:id/ar" component={HatOne} />
-              <Route exact path="/products/:id/ar" component={HatTwo} />
+              <Route exact path="/products/:id/ar" component={OneAR} />
+              {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
               <Route exact path="/products/:id/ar" component={SunTwo} />
               <Route exact path="/products/:id/ar" component={SunThree} />
               <Route exact path="/products/:id/ar" component={WatchOne} />
               <Route exact path="/products/:id/ar" component={WatchTwo} />
-              <Route exact path="/products/:id/ar" component={WatchThree} />
+              <Route exact path="/products/:id/ar" component={WatchThree} /> */}
 
               {/* <Route exact path="/threedee" component={ThreeDee} />
               <Route exact path="/shapes" component={Shapes} /> */}
