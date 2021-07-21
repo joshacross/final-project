@@ -29,6 +29,7 @@ import OrderHistory from './pages/OrderHistory';
 import Hiro from './components/Hiro';
 import Earth from './components/earth';
 import OneAR from './components/OneAR';
+import Nav from './components/Nav';
 
 //connect to server side
 const httpLink = createHttpLink({

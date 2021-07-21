@@ -7,6 +7,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 import { Grid } from '@material-ui/core';
+import CategoryMenu from '../CategoryMenu';
 
 
 function ProductList() {
@@ -59,6 +60,7 @@ function ProductList() {
     <Grid>
     <div className="my-2">
       <h2>Our Products:</h2>
+      <CategoryMenu />
       {state.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (

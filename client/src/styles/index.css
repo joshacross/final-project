@@ -1,6 +1,6 @@
 :root {
-  --primary: #028090;
-  --secondary: #F3A847;
+  --primary: #2f4f4f;
+  --secondary: #33312E;
   --tertiary: #B12704;
   --light: #fafafa;
   --dark: #272f32;
@@ -11,6 +11,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'STIX Two Math', serif;
 }
 
 html,
@@ -34,10 +35,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik', sans-serif;
   font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
+}
+
+.MuiTypography-h5 {
+  font-family: 'STIX Two Math', serif;
 }
 
 h1 {
@@ -97,6 +101,7 @@ button {
   cursor: pointer;
   margin: 0 1px;
   background-color: var(--secondary);
+  color: #ffff
 }
 
 button:hover {

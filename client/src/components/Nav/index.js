@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   navbar: {
-    backgroundColor: '#3da7bf'
+    // backgroundColor: '#3da7bf'
+    backgroundColor: '#2f4f4f'
   },
   nobullet: {
     listStyleType: "none"
@@ -73,7 +74,7 @@ function Nav() {
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             <Link to="/">
-              <span role="img" aria-label="shopping bag">🛍️ </span>
+              <span role="img" aria-label="shopping bag">AR </span>
               Augmented Retail
             </Link>
           </Typography>

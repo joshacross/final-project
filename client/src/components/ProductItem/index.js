@@ -53,6 +53,7 @@ const useStyles = makeStyles({
     margin: 20,
     boxShadow: '0 3px 5px 2px rgba(52, 122, 235, .3)',
     alignItems: 'spaceAround',
+    fontFamily: 'STIX Two Math, serif'
   },
   media: {
     height: 150,
@@ -66,11 +67,13 @@ const useStyles = makeStyles({
   return (
     <Card className={classes.root} variant='outlined'>
       <CardActionArea>
+        <Link to={`/products/${_id}`}>
         <CardMedia
           className={classes.media}
           image={`/images/${thumbnail}`}
           alt={name}
         />
+        </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {name}
