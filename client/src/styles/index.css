@@ -220,58 +220,77 @@ input:focus {
   color: var(--error);
 }
 
-@media screen and (min-width: 600px) {
-  #categories {
-  
-  }
+@media screen and (max-width: 600px) {
 
   #categories button {
-    font-size: 4rem;
+    font-size: 2rem;
+    background-color: yellow;
   }
 
   #feed-title {
-    font-size: 4rem;
+    font-size: 2rem;
+  }
+
+  header img {
+    max-width: 6rem; 
+  }
+
+  #logo-title {
+    font-size: 2rem;
   }
 }
 
 @media screen and (min-width: 960px) {
-  #categories {
-  
-  }
 
   #categories button {
     font-size: 4rem;
+    background-color: green;
   }
 
   #feed-title {
+    font-size: 4rem;
+  }
+
+  header img {
+    max-width: 6rem; 
+  }
+
+  #logo-title {
     font-size: 4rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  #categories {
-    
-  }
 
   #categories button {
     font-size: 2rem;
+    background-color: orange;
   }
 
   #feed-title {
-    font-size: 3rem;
+    font-size: 2.75rem;
+  }
+
+  header img {
+    max-width: 6rem; 
+  }
+
+  #logo-title {
+    font-size: 4rem;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  #categories {
-  
-  }
 
   #feed-title {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   header img {
-    max-width: 5rem; 
+    max-width: 6rem; 
+  }
+
+  #logo-title {
+    font-size: 4rem;
   }
 }

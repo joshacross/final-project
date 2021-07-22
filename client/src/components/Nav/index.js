@@ -79,7 +79,7 @@ function Nav() {
           <Typography variant="h6" className={classes.title}>
             <Link to="/" className={classes.logo}>
               <span role="img" aria-label="logo"><img src='../../../images/ar.png' /> </span>
-              <div>Augmented Retail</div>
+              <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>
           
