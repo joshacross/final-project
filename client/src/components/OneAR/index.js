@@ -9,8 +9,8 @@ import {
 } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
-// you have to import name of product and set it equal to import 
 
+// you have to import name of product and set it equal to import 
 
 function OneAR () {
   const [state, dispatch] = useStoreContext();
@@ -55,31 +55,28 @@ function OneAR () {
   }
   }, [products, data, loading, dispatch, id]);
 
-  
+    return (
+      <>
+        { currentProduct !== {} ? (
+        <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
+          <Marker parameters={{ preset: 'hiro' }}>
+              
+            <a-sphere src={`/images/${currentProduct.thumbnail}`} radius="1" segments-height="53">
+              <a-animation
+                attribute="rotation"
+                dur="3000"
+                from="1 -90 90"
+                to="360 -90 90"
+                easing="linear"
+                repeat="indefinite" />
+            </a-sphere>
 
-  return (
-    <>
-      
-      {currentProduct ? 
-        (<AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
-        <Marker parameters={{ preset: 'hiro' }}>
-
-          <a-assets-item img id="AR" src={`/images/${currentProduct.thumbnail}`} alt={currentProduct.name} />
-
-          <a-sphere src="#AR" radius="1" segments-height="53">
-            <a-animation
-              attribute="rotation"
-              dur="3000"
-              from="1 -90 90"
-              to="360 -90 90"
-              easing="linear"
-              repeat="indefinite" />
-          </a-sphere>
-
-        </Marker>
-      </AFrameRenderer>): <h4>Still Loading...</h4>}
-      </>
+          </Marker>
+        </AFrameRenderer>) : (<h1>Loading...</h1>)
+        }
+    </>
     );
+
 }
 
 export default OneAR;

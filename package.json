@@ -23,7 +23,7 @@
     "qrcode": "^1.4.4",
     "qrcode.react": "^1.0.1",
     "react-aframe-ar": "^1.18.0",
-    "stripe": "^8.161.0",
+    "stripe": "^8.164.0",
     "three": "^0.87.1"
   }
 }
