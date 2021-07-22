@@ -5,7 +5,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 
-function CategoryMenu({ setCategory }) {
+function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
 
   const { categories } = state;
@@ -46,6 +46,13 @@ function CategoryMenu({ setCategory }) {
     });
   };
 
+  const allProductHandleCLick = () => {
+    dispatch({
+      type: UPDATE_CURRENT_CATEGORY,
+      currentCategory: ''
+    });
+  };
+
   return (
     <div id='categories'>
       {categories.map(item => (
@@ -58,6 +65,9 @@ function CategoryMenu({ setCategory }) {
           {item.name}
         </button>
       ))}
+      <button key="all-product" onClick={() => {
+        allProductHandleCLick();
+      }}>View all products</button>
     </div>
   );
 }
