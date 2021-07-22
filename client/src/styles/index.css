@@ -163,6 +163,11 @@ input:focus {
   justify-content: center;
 }
 
+.flex-row li{
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -224,7 +229,6 @@ input:focus {
 
   #categories button {
     font-size: 2rem;
-    background-color: yellow;
   }
 
   #feed-title {
@@ -233,10 +237,6 @@ input:focus {
 
   header img {
     max-width: 6rem; 
-  }
-
-  #logo-title {
-    font-size: 2rem;
   }
 }
 
@@ -244,7 +244,6 @@ input:focus {
 
   #categories button {
     font-size: 4rem;
-    background-color: green;
   }
 
   #feed-title {
@@ -252,19 +251,27 @@ input:focus {
   }
 
   header img {
-    max-width: 6rem; 
+    max-width: 10rem; 
   }
 
   #logo-title {
-    font-size: 4rem;
+    visibility: hidden;
   }
+
+  header li {
+    font-size: 3rem;
+  }
+
+  /* header button {
+    width: 6rem;
+    height: 6rem;
+  } */
 }
 
 @media screen and (min-width: 1280px) {
 
   #categories button {
     font-size: 2rem;
-    background-color: orange;
   }
 
   #feed-title {
@@ -277,10 +284,13 @@ input:focus {
 
   #logo-title {
     font-size: 4rem;
+    visibility: visible;
   }
 }
 
 @media screen and (min-width: 1920px) {
+  #categories button {
+  }
 
   #feed-title {
     font-size: 2.75rem;
@@ -292,5 +302,9 @@ input:focus {
 
   #logo-title {
     font-size: 4rem;
+  }
+
+  header li {
+    font-size: 2rem;
   }
 }
