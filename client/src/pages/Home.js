@@ -1,10 +1,9 @@
 import React from "react";
 import ProductList from "../components/ProductList";
-import CategoryMenu from "../components/CategoryMenu";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="container" disableGutters={true}>
       <ProductList />
     </div>
   );

@@ -138,6 +138,10 @@ function Detail() {
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    buttons: {
+      marginLeft: '1rem',
+      marginRight: '1rem',
+    }
   }));
 
   //access the paper object with its key/value pairs through classes.paper from useStyles() line 132
@@ -182,28 +186,36 @@ function Detail() {
     <>
       {currentProduct ? (
         <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
+          <Link id="back-link" to="/">← Back to Products</Link>
 
-          <h2>{currentProduct.name}</h2>
+          <div className="body-container">
+            <h2>{currentProduct.name}</h2>
 
-          <p>{currentProduct.description}</p>
+            <img
+              src={`/images/${currentProduct.thumbnail}`}
+              alt={currentProduct.name}
+            />
 
-          <p>
-            <strong>Price:</strong>${currentProduct.price}{' '}
+            <p>{currentProduct.description}</p>
+
+          </div>
+          <div className="body-container">
+            <strong>Price: ${currentProduct.price}{' '}</strong>
           
-          <Button onClick={addToCart}>
+          <Button onClick={addToCart} className={classes.buttons}>
             Add to Cart
           </Button>
           <Button
             disabled={!cart.find(p => p._id === currentProduct._id)}
             onClick={removeFromCart}
+            className={classes.buttons}
           >
             Remove from Cart
           </Button>
-          <Button variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
+          <Button className={classes.buttons} variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
             View In Your Environment
             </Button>
-          </p>
+          </div>
           <Modal
             open={open}
             keepMounted
@@ -213,10 +225,6 @@ function Detail() {
           >
             {body}
           </Modal>
-          <img
-            src={`/images/${currentProduct.thumbnail}`}
-            alt={currentProduct.name}
-          />
         </div>
       ) : null}
       {loading ? <h1>Loading...</h1> : null}
