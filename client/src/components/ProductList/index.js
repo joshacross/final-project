@@ -57,9 +57,9 @@ function ProductList() {
   }
 
   return (
-    <Grid>
+    <Grid disableGutters={true}>
     <div className="my-2">
-      <h2>Our Products:</h2>
+      <h2 id='feed-title'>Our Products:</h2>
       <CategoryMenu />
       {state.products.length ? (
         <div className="flex-row">

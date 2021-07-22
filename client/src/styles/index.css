@@ -44,7 +44,7 @@ h6 {
   font-family: 'STIX Two Math', serif;
 }
 
-/* h1 {
+h1 {
   font-size: 2.25rem;
 }
 
@@ -71,7 +71,7 @@ h6 {
 p {
   font-size: 1.1rem;
   margin-top: 0;
-} */
+}
 
 a {
   color: var(--tertiary);
@@ -151,8 +151,8 @@ input:focus {
 }
 
 .container {
-  width: 85%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -160,6 +160,12 @@ input:focus {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-row li{
+  margin-left: 1rem;
+  margin-right: 2rem;
 }
 
 .space-between {
@@ -219,39 +225,86 @@ input:focus {
   color: var(--error);
 }
 
-@media screen and (min-width: 600px) {
-  #categories {
-  
-  }
+@media screen and (max-width: 600px) {
 
   #categories button {
-    font-size: 4rem;
+    font-size: 2rem;
+  }
+
+  #feed-title {
+    font-size: 2rem;
+  }
+
+  header img {
+    max-width: 6rem; 
   }
 }
 
 @media screen and (min-width: 960px) {
-  #categories {
-  
-  }
 
   #categories button {
     font-size: 4rem;
   }
+
+  #feed-title {
+    font-size: 4rem;
+  }
+
+  header img {
+    max-width: 10rem; 
+  }
+
+  #logo-title {
+    visibility: hidden;
+  }
+
+  header li {
+    font-size: 3rem;
+  }
+
+  /* header button {
+    width: 6rem;
+    height: 6rem;
+  } */
 }
 
 @media screen and (min-width: 1280px) {
-  #categories {
-    
+
+  #categories button {
+    font-size: 2rem;
   }
 
+  #feed-title {
+    font-size: 2.75rem;
+  }
 
-#categories button {
-    font-size: 2rem;
+  header img {
+    max-width: 6rem; 
+  }
+
+  #logo-title {
+    font-size: 4rem;
+    visibility: visible;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  #categories {
-  
+  #categories button {
+  }
+
+  #feed-title {
+    font-size: 2.75rem;
+  }
+
+  header img {
+    max-width: 6rem; 
+  }
+
+  #logo-title {
+    font-size: 4rem;
+  }
+
+  header li {
+    font-size: 2rem;
   }
 }

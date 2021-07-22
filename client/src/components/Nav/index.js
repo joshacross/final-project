@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
   nobullet: {
     listStyleType: "none"
-  }
+  },
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 function Nav() {
@@ -73,9 +77,9 @@ function Nav() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link to="/">
-              <span role="img" aria-label="shopping bag">AR </span>
-              Augmented Retail
+            <Link to="/" className={classes.logo}>
+              <span role="img" aria-label="logo"><img src='../../../images/ar.png' /> </span>
+              <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>
           

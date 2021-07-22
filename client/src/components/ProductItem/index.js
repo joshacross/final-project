@@ -48,7 +48,7 @@ const addToCart = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       [theme.breakpoints.down("sm")]: {
-        width: 300,
+        width: 150,
       },
       [theme.breakpoints.up("md")]: {
         width: 350,
@@ -72,7 +72,7 @@ const addToCart = () => {
     },
   media: {
     [theme.breakpoints.down("sm")]: {
-      height: 200,
+      height: 100,
     },
     [theme.breakpoints.up("md")]: {
       height: 200,
@@ -83,7 +83,7 @@ const addToCart = () => {
   },
   title: {
     [theme.breakpoints.down("sm")]: {
-      fontSize: '2.5rem',
+      fontSize: '1rem',
     },
     [theme.breakpoints.up("md")]: {
       fontSize: '2.5rem',
@@ -94,7 +94,7 @@ const addToCart = () => {
     },
   actions: {
     [theme.breakpoints.down("sm")]: {
-      fontSize: '2rem',
+      fontSize: '.75rem',
     },
     [theme.breakpoints.up("md")]: {
       fontSize: '1.75rem',
