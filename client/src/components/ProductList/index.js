@@ -57,7 +57,7 @@ function ProductList() {
   }
 
   return (
-    <Grid>
+    <Grid disableGutters={true}>
     <div className="my-2">
       <h2>Our Products:</h2>
       <CategoryMenu />

@@ -151,8 +151,8 @@ input:focus {
 }
 
 .container {
-  width: 85%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -160,6 +160,7 @@ input:focus {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .space-between {
