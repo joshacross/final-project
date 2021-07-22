@@ -270,4 +270,8 @@ input:focus {
   #feed-title {
     font-size: 3rem;
   }
+
+  header img {
+    max-width: 5rem; 
+  }
 }
