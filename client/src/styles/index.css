@@ -225,6 +225,10 @@ input:focus {
   color: var(--error);
 }
 
+#detail-top-container p {
+  margin: 3vw;
+}
+
 @media screen and (max-width: 600px) {
 
   #categories button {
@@ -240,7 +244,7 @@ input:focus {
   }
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 960px) and (max-width: 1279px) {
 
   #categories button {
     font-size: 4rem;
@@ -262,10 +266,46 @@ input:focus {
     font-size: 3rem;
   }
 
-  /* header button {
-    width: 6rem;
-    height: 6rem;
-  } */
+  h2 {
+    font-size: 4rem;
+    white-space: nowrap;
+  }
+
+  #back-link{
+    font-size: 3vw;
+  }
+
+  .body-container,
+  .body-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .body-container label,
+  .body-container input,
+  .body-container button {
+    font-size: 4vw;
+    
+  }
+
+  .body-container button {
+    background-color: var(--primary);
+    color: white;
+    margin: 2vw;
+    padding: 2vw;
+  }
+
+  .body-container p{
+    font-size: 4vw;
+    text-align: left;
+    margin: 3vw;
+  }
+
+
+  .body-container strong{
+    font-size: 5vw;
+  }
 }
 
 @media screen and (min-width: 1280px) {
