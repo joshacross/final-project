@@ -268,6 +268,7 @@ input:focus {
 
   h2 {
     font-size: 4rem;
+    white-space: nowrap;
   }
 
   #detail-top-container{
@@ -287,14 +288,6 @@ input:focus {
     align-items: center;
   }
 
-  #detail-bottom-container button{
-    font-size: 4vw;
-    margin: 2vw;
-    padding: 2vw;
-    background-color: var(--primary);
-    color: white;
-  }
-
   #back-link{
     font-size: 3vw;
   }
@@ -310,19 +303,26 @@ input:focus {
   .body-container input,
   .body-container button {
     font-size: 4vw;
+    
   }
 
-  /* .body-container form {
-    display: flex;
-    flex-direction: column;
+  .body-container button {
+    background-color: var(--primary);
+    color: white;
+    margin: 2vw;
+    padding: 2vw;
+  }
 
-    font-size: 3rem;
-  } */
+  .body-container p{
+    font-size: 4vw;
+    text-align: left;
+    margin: 3vw;
+  }
 
-  /* header button {
-    width: 6rem;
-    height: 6rem;
-  } */
+
+  .body-container strong{
+    font-size: 5vw;
+  }
 }
 
 @media screen and (min-width: 1280px) {

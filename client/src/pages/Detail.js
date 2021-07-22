@@ -188,7 +188,7 @@ function Detail() {
         <div className="container my-1">
           <Link id="back-link" to="/">← Back to Products</Link>
 
-          <div id="detail-top-container">
+          <div className="body-container">
             <h2>{currentProduct.name}</h2>
 
             <img
@@ -199,8 +199,8 @@ function Detail() {
             <p>{currentProduct.description}</p>
 
           </div>
-          <div id="detail-bottom-container">
-            <strong>Price:</strong>${currentProduct.price}{' '}
+          <div className="body-container">
+            <strong>Price: ${currentProduct.price}{' '}</strong>
           
           <Button onClick={addToCart} className={classes.buttons}>
             Add to Cart
