@@ -299,6 +299,26 @@ input:focus {
     font-size: 3vw;
   }
 
+  .body-container,
+  .body-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .body-container label,
+  .body-container input,
+  .body-container button {
+    font-size: 4vw;
+  }
+
+  /* .body-container form {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 3rem;
+  } */
+
   /* header button {
     width: 6rem;
     height: 6rem;
