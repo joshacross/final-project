@@ -107,7 +107,7 @@ const addToCart = () => {
   justify: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignContent: "center",
   }
   }))

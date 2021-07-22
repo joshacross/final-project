@@ -95,13 +95,20 @@ button {
   /* font-size: 1rem; */
   text-decoration: none;
   padding: 0.25rem 1rem;
+  margin: 0 1rem 0 1rem;
   border-radius: .5rem;
   border: none;
   outline: none;
   cursor: pointer;
-  margin: 0 1px;
   background-color: var(--secondary);
-  color: #ffff
+  color: #ffff;
+  box-shadow: 0 0 .35rem rgba(0, 0, 0, .5);
+}
+
+#categories {
+  display: flex;
+  justify-content: center;
+  
 }
 
 button:hover {
@@ -212,8 +219,39 @@ input:focus {
   color: var(--error);
 }
 
-@media screen and (max-width: 768px) {
-  .card {
-    width: 100%;
+@media screen and (min-width: 600px) {
+  #categories {
+  
+  }
+
+  #categories button {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  #categories {
+  
+  }
+
+  #categories button {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #categories {
+    
+  }
+
+
+#categories button {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  #categories {
+  
   }
 }
