@@ -138,6 +138,10 @@ function Detail() {
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    buttons: {
+      marginLeft: '1rem',
+      marginRight: '1rem',
+    }
   }));
 
   //access the paper object with its key/value pairs through classes.paper from useStyles() line 132
@@ -186,21 +190,27 @@ function Detail() {
 
           <h2>{currentProduct.name}</h2>
 
+          <img
+            src={`/images/${currentProduct.thumbnail}`}
+            alt={currentProduct.name}
+          />
+
           <p>{currentProduct.description}</p>
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
           
-          <Button onClick={addToCart}>
+          <Button onClick={addToCart} className={classes.buttons}>
             Add to Cart
           </Button>
           <Button
             disabled={!cart.find(p => p._id === currentProduct._id)}
             onClick={removeFromCart}
+            className={classes.buttons}
           >
             Remove from Cart
           </Button>
-          <Button variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
+          <Button className={classes.buttons} variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
             View In Your Environment
             </Button>
           </p>
@@ -213,10 +223,6 @@ function Detail() {
           >
             {body}
           </Modal>
-          <img
-            src={`/images/${currentProduct.thumbnail}`}
-            alt={currentProduct.name}
-          />
         </div>
       ) : null}
       {loading ? <h1>Loading...</h1> : null}
