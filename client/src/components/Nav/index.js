@@ -78,7 +78,7 @@ function Nav() {
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             <Link to="/" className={classes.logo}>
-              <span role="img" aria-label="logo"><img src='../../../images/ar.png' /> </span>
+              <span role="img" aria-label="logo" alt="augmented retail logo"><img src='../../../images/ar.png' alt="augmented retail logo" /> </span>
               <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>
