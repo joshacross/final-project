@@ -186,18 +186,20 @@ function Detail() {
     <>
       {currentProduct ? (
         <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
+          <Link id="back-link" to="/">← Back to Products</Link>
 
-          <h2>{currentProduct.name}</h2>
+          <div id="detail-top-container">
+            <h2>{currentProduct.name}</h2>
 
-          <img
-            src={`/images/${currentProduct.thumbnail}`}
-            alt={currentProduct.name}
-          />
+            <img
+              src={`/images/${currentProduct.thumbnail}`}
+              alt={currentProduct.name}
+            />
 
-          <p>{currentProduct.description}</p>
+            <p>{currentProduct.description}</p>
 
-          <p>
+          </div>
+          <div id="detail-bottom-container">
             <strong>Price:</strong>${currentProduct.price}{' '}
           
           <Button onClick={addToCart} className={classes.buttons}>
@@ -213,7 +215,7 @@ function Detail() {
           <Button className={classes.buttons} variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
             View In Your Environment
             </Button>
-          </p>
+          </div>
           <Modal
             open={open}
             keepMounted
