@@ -40,6 +40,8 @@ const addToCart = () => {
     idbPromise('cart', 'put', {...item, purchaseQuantity: 1});
   }
 };
+  
+
 
   const useStyles = makeStyles((theme) => ({
     root: {
