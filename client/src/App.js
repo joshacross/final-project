@@ -27,9 +27,9 @@ import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 // import Hiro from './components/Hiro';
-// import Earth from './components/Earth';
+import Earth from './components/Earth';
 import OneAR from './components/OneAR';
-// import Threedee from './components/3D-Under-Construction';
+import Threedee from './components/3D-Under-Construction';
 import Nav from './components/Nav';
 
 //connect to server side
@@ -81,10 +81,10 @@ function App() {
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
               {/* <Route exact path="/products/:id/ar" component={AR} /> */}
-              {/* <Route exact path="/ar" component={Hiro} />
-              <Route exact path="/ar/earth" component={Earth} /> */}
+              {/* /* <Route exact path="/ar" component={Hiro} /> */}
+              <Route exact path="/ar/Earth" component={Earth} /> */
               <Route exact path="/products/:id/ar" component={OneAR} />
-              {/* <Route exact path="/ar/threedee" component={Threedee} /> */}
+              <Route exact path="/ar/threedee" component={Threedee} />
               {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
