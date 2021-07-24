@@ -141,17 +141,22 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (parent, {_id, reviewText}, context) => {
-      if (context.user) {
-        const fullName = context.user.firstName + ' ' + context.user.lastName;
-        
-        const product = await Product.findByIdAndUpdate({  
-          _id: _id,
-          $push: { reviews: { productID: _id, reviewText: reviewText, author: fullName } },
-          new: true
-        });
-        return product;
+    updateProductReview: async (parent, {productID, reviewText, author}, context) => {
+      if (!context.user) {
+        throw new Error("You must be logged in!");
       }
+      const product = await Product.findByIdAndUpdate(
+        {_id: productID},
+        {
+          $push: {
+            reviews:
+              { productID, reviewText, author }
+          },
+        },
+        { new: true }
+      );
+      return product;
+      
     },
     addProduct: async (parent, args, context) => {
       if (context.user) {

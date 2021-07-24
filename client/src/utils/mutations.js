@@ -109,6 +109,7 @@ export const UPDATE_PRODUCT = gql`
         }
         reviews {
             _id
+            productID
             author
             reviewText
           }
@@ -140,17 +141,15 @@ export const REMOVE_REVIEW = gql`
   }
 `;
 
-export const ADD_REVIEW = gql`
-  mutation addReview($_id: ID!){
-    addReview(_id: $_id) {
-      Product {
-        _id
+export const UPDATE_PRODUCT_REVIEW = gql`
+  mutation updateProductReview($productID:ID!, $author: String!, $reviewText: String!){
+    updateProductReview(productID: $productID, author:$author, reviewText: $reviewText) {
         reviews {
+          _id
           productID
           author
           reviewText
         }
-      }
+      } 
     }
-  }
 `;
