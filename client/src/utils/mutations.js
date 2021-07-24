@@ -141,11 +141,12 @@ export const REMOVE_REVIEW = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($product: ID!, $author: String!, $reviewText:String!){
-    addReview(product: $product, author: $author, reviewText: $reviewText) {
-      product {
-        name
+  mutation addReview($_id: ID!){
+    addReview(_id: $_id) {
+      Product {
+        _id
         reviews {
+          productID
           author
           reviewText
         }

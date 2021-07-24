@@ -19,11 +19,13 @@
   "dependencies": {
     "@material-ui/core": "^4.12.1",
     "@material-ui/icons": "^4.11.2",
+    "@stripe/stripe-js": "^1.16.0",
     "aframe": "^1.2.0",
+    "dotenv": "^10.0.0",
     "qrcode": "^1.4.4",
     "qrcode.react": "^1.0.1",
     "react-aframe-ar": "^1.18.0",
-    "stripe": "^8.161.0",
+    "stripe": "^8.164.0",
     "three": "^0.87.1"
   }
 }

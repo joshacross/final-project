@@ -1,9 +1,9 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Order, Review } = require("../models");
 const { signToken } = require("../utils/auth");
-const { STRIPE_URI } = require("../.env");
-const stripe = require("stripe")
-console.log(STRIPE_URI);
+require('dotenv').config();
+const stripe = require("stripe")('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
 
 const resolvers = {
   Query: {
@@ -141,21 +141,15 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (parent, args, context) => {
+    addReview: async (parent, {_id, reviewText}, context) => {
       if (context.user) {
         const fullName = context.user.firstName + ' ' + context.user.lastName;
-          // maybe create({...args, context.user._id}) 
-        // const { review } = await Review.create(args);
-        //in theory...
-        const review = await Review.create({...args, author: fullName });
-          const product = await Product.findByIdAndUpdate(
-            
-            review.product._id,
-            {
-              $push: { reviews: review },
-              new: true
-            }
-          );
+        
+        const product = await Product.findByIdAndUpdate({  
+          _id: _id,
+          $push: { reviews: { productID: _id, reviewText: reviewText, author: fullName } },
+          new: true
+        });
         return product;
       }
     },

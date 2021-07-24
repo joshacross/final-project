@@ -26,10 +26,13 @@ import { StoreProvider } from "./utils/GlobalState";
 import './styles/index.css';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-import Hiro from './components/Hiro';
-import Earth from './components/earth';
+// import Hiro from './components/Hiro';
+// import Earth from './components/Earth';
 import OneAR from './components/OneAR';
+// import Threedee from './components/3D-Under-Construction';
 import Nav from './components/Nav';
+import ProductList from "./components/ProductList";
+import Review from './components/Review';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -74,15 +77,18 @@ function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/productList" component={ProductList} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/review/:id" component={Review} />
               {/* <Route exact path="/products/:id/ar" component={AR} /> */}
-              <Route exact path="/ar" component={Hiro} />
-              <Route exact path="/ar/earth" component={Earth} />
+              {/* <Route exact path="/ar" component={Hiro} />
+              <Route exact path="/ar/earth" component={Earth} /> */}
               <Route exact path="/products/:id/ar" component={OneAR} />
+              {/* <Route exact path="/ar/threedee" component={Threedee} /> */}
               {/* <Route exact path="/products/:id/ar" component={HatTwo} />
               <Route exact path="/products/:id/ar" component={HatThree} />
               <Route exact path="/products/:id/ar" component={SunOne} />
