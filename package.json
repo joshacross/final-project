@@ -24,6 +24,6 @@
     "qrcode.react": "^1.0.1",
     "react-aframe-ar": "^1.18.0",
     "stripe": "^8.164.0",
-    "three": "^0.87.1"
+    "three": "^0.130.1"
   }
 }
