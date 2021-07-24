@@ -13,33 +13,33 @@ function ProductItem(item) {
     price
   } = item;
 
-const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext();
 
-const { cart } = state;
+  const { cart } = state;
 
-const addToCart = () => {
-  // find cart item with matching id
-  const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+  const addToCart = () => {
+    // find cart item with matching id
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
 
-  // if no match, call UPDATE with new purchase quantity
-  if (itemInCart) {
-    dispatch({
-      type: UPDATE_CART_QUANTITY,
-      _id: _id,
-      purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-    });
-    idbPromise('cart', 'put', {
-      ...itemInCart,
-      purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-    });
-  } else {
-    dispatch({
-      type: ADD_TO_CART,
-      product: {...item, purchaseQuantity: 1}
-    });
-    idbPromise('cart', 'put', {...item, purchaseQuantity: 1});
-  }
-};
+    // if no match, call UPDATE with new purchase quantity
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...item, purchaseQuantity: 1 }
+      });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+    }
+  };
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,9 +48,9 @@ const addToCart = () => {
       },
       [theme.breakpoints.up("md")]: {
         width: 350,
-          typography: {
-            fontSize: '200rem',
-          }
+        typography: {
+          fontSize: '200rem',
+        }
       },
       [theme.breakpoints.up("lg")]: {
         width: 300,
@@ -66,66 +66,68 @@ const addToCart = () => {
       justifyItems: 'flex-end',
       justifyContent: 'space-between',
     },
-  media: {
-    [theme.breakpoints.down("sm")]: {
-      height: 100,
+    media: {
+      [theme.breakpoints.down("sm")]: {
+        height: 100,
+      },
+      [theme.breakpoints.up("md")]: {
+        height: 200,
+      },
+      [theme.breakpoints.up("lg")]: {
+        height: 150,
+      },
     },
-    [theme.breakpoints.up("md")]: {
-      height: 200,
+    title: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: '1rem',
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: '2.5rem',
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: '1.5rem',
+      },
     },
-    [theme.breakpoints.up("lg")]: {
-      height: 150,
+    actions: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: '.75rem',
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: '1.75rem',
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: '1rem',
+      },
+      textAlign: 'center',
     },
-  },
-  title: {
-    [theme.breakpoints.down("sm")]: {
-      fontSize: '1rem',
-    },
-    [theme.breakpoints.up("md")]: {
-      fontSize: '2.5rem',
-    },
-    [theme.breakpoints.up("lg")]: {
-      fontSize: '1.5rem',
-    },
-    },
-  actions: {
-    [theme.breakpoints.down("sm")]: {
-      fontSize: '.75rem',
-    },
-    [theme.breakpoints.up("md")]: {
-      fontSize: '1.75rem',
-    },
-    [theme.breakpoints.up("lg")]: {
-      fontSize: '1rem',
-    },
-    textAlign: 'center',
-  },
-  justify: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
-    alignContent: "center",
-  }
+    justify: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-around",
+      alignContent: "center",
+    }
   }))
 
   const classes = useStyles();
 
   return (
     <Card className={classes.root} variant='outlined'>
-      <CardActionArea>
-        <Link to={`/products/${_id}`}>
-        <CardMedia
-          className={classes.media}
-          image={`/images/${thumbnail}`}
-          alt={name}
-        />
-        </Link>
-        <CardContent>
-          <Typography gutterBottom component="h2" className={classes.title}>
-            {name}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link to={`/products/${_id}`}>
+        <CardActionArea>
+
+          <CardMedia
+            className={classes.media}
+            image={`/images/${thumbnail}`}
+            alt={name}
+          />
+
+          <CardContent>
+            <Typography gutterBottom component="h2" className={classes.title}>
+              {name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <CardActions className={classes.justify}>
         <Typography className={classes.actions}>
           {price}
