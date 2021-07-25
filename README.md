@@ -103,10 +103,10 @@ testing code
 - [Portfolio 💼](#)
 
 ****
-
-- [GitHub Profile 🖥️](https://github.com/)
-- [Email 📧](mailto:)
-- [Portfolio 💼](#)
+**Casey Arrington**
+- [GitHub Profile 🖥️](https://github.com/carrington13)
+- [Email 📧](mailto:caseyarrington13@gmail.com)
+- [Portfolio 💼](https://radiant-plains-18544.herokuapp.com/)
 
 <p>&nbsp</p>
 
