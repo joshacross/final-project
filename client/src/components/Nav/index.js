@@ -79,6 +79,14 @@ function Nav() {
     }
   }
 
+  function landingRedirect() {
+    if (Auth.loggedIn()) {
+      return '/ProductList';
+    }
+
+    return '/'
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
@@ -87,7 +95,7 @@ function Nav() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" className={classes.logo}>
+            <Link to= {landingRedirect()}  className={classes.logo}>
               <span role="img" aria-label="logo" alt="augmented retail logo"><img src='../../../images/ar.png' alt="augmented retail logo" /> </span>
               <div id='logo-title'>Augmented Retail</div>
             </Link>
