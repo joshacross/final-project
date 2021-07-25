@@ -121,12 +121,12 @@ const addToCart = () => {
           image={`/images/${thumbnail}`}
           alt={name}
         />
-        </Link>
         <CardContent>
           <Typography gutterBottom component="h2" className={classes.title}>
             {name}
           </Typography>
         </CardContent>
+        </Link>
       </CardActionArea>
       <CardActions className={classes.justify}>
         <Typography className={classes.actions}>
