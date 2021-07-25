@@ -149,8 +149,10 @@ function Review() {
   let textInput = useRef(null);
 
   const reviewList = (product) => {
-    if (product !== undefined) {
-      return product.reviews.forEach((review) => {
+    // Changed condition to if the exist vs if they are undefined
+    if (product.reviews) {
+      // Changed foreach to map
+      return product.reviews.map((review) => {
         return <>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
@@ -219,8 +221,10 @@ function Review() {
       </div>
       <div>
                 {currentProduct.reviews ?
-            (              
-              <List className={classes.rootTwo}>{reviewList(currentProduct.reviews)}</List>
+            ( 
+              // Changed function call because you had already passed in currentProduct.reviews here so when you called it in the foreach/map
+              // you were essentially asking for product.reviews.reviews 
+              <List className={classes.rootTwo}>{reviewList(currentProduct)}</List>
         ) : (<h2>No reviews currently. Be the first to leave some feedback on this product!</h2>)}
       </div>
       </div>
