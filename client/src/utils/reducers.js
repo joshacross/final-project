@@ -4,6 +4,7 @@ import {
   UPDATE_PRODUCTS,
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
+  UPDATE_CURRENT_PRODUCT_ID,
   ADD_TO_CART,
   ADD_MULTIPLE_TO_CART,
   REMOVE_FROM_CART,
@@ -31,6 +32,11 @@ export const reducer = (state, action) => {
         ...state,
         currentCategory: action.currentCategory
       };
+    case UPDATE_CURRENT_PRODUCT_ID:
+      return {
+        ...state,
+        currentProductID: action.currentProductID
+      }
     
     case ADD_TO_CART:
       return {
