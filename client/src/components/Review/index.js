@@ -38,7 +38,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 375,
   },
   form: {
-    minHeight: 300,
+    margin: '2vw',
+    width: '90%',
+  },
+  input: {
+    width: '80%',
+    fontSize: '1vw',
+    margin: 'normal'
   },
   rootTwo: {
     width: '100%',
@@ -186,38 +192,20 @@ function Review() {
     <>
     <div>
       <div>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt={currentProduct.name}
-              image={`/images/${currentProduct.thumbnail}`}
-              title={currentProduct.name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {currentProduct.name}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Please feel free to leave a review below!
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActionArea className={classes.form}>
-            <form noValidate autoComplete="off">
-              <TextField className={classes.text} required name="reviewText" label="Required Review Text" variant="outlined" multiline
-                maxRows={3} inputRef={textInput} onChange={handleChange} />
-            </form>
-            <CardActions>
-              <Button className={classes.clickMe} size="small" color="primary" onClick={handleAddReview}>
-                + Add Review
-              </Button>
-              <Button className={classes.clickMe} size="small" color="secondary" onClick={() => { textInput.current.value = ''; }}>
-                - Clear Review Text
-              </Button>
-            </CardActions>
-          </CardActionArea>
-        </Card>
+            <div className={'body-container'}>
+                <form noValidate autoComplete="off" className={classes.form}>
+                  <TextField className={classes.input} size="normal" required name="reviewText" label="Please leave a review!" variant="outlined" multiline
+                    maxRows={3} inputRef={textInput} onChange={handleChange} InputProps={{classes: { input: classes.input } }}/>
+                </form>
+                <CardActions>
+                  <Button className={classes.clickMe} size="small" color="primary" onClick={handleAddReview}>
+                    + Add Review
+                  </Button>
+                  <Button className={classes.clickMe} size="small" color="secondary" onClick={() => { textInput.current.value = ''; }}>
+                    - Clear Review Text
+                  </Button>
+                </CardActions>
+            </div>
       </div>
       <div>
                 {currentProduct.reviews ?

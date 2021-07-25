@@ -105,6 +105,10 @@ button {
   box-shadow: 0 0 .35rem rgba(0, 0, 0, .5);
 }
 
+hr {
+  margin: 2rem;
+}
+
 #categories {
   display: flex;
   justify-content: center;
@@ -305,6 +309,11 @@ input:focus {
 
   .body-container strong{
     font-size: 5vw;
+  }
+
+  .body-container fieldset,
+  .body-container form {
+    height: 20vw;
   }
 }
 

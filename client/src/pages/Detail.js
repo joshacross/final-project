@@ -16,6 +16,7 @@ import Modal from '@material-ui/core/Modal';
 //for styling modal
 import { makeStyles } from '@material-ui/core/styles';
 import QRCode from 'qrcode';
+import Review from '../components/Review';
 
 function Detail() {
   
@@ -214,9 +215,11 @@ function Detail() {
             View In Your Environment
             </Button>
             <div>
-              <Link color="primary" variant="outlined" to={`/review/${currentProduct._id}`} className={classes.actions}>
+              {/* <Link color="primary" variant="outlined" to={`/review/${currentProduct._id}`} className={classes.actions}>
                 Write Review 
-              </Link>
+              </Link> */}
+              <hr></hr>
+              <Review />
             </div>
           </div>
           <Modal
