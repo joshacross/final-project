@@ -7,10 +7,6 @@ import { UPDATE_PRODUCT_REVIEW } from '../../utils/mutations';
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { CardActions } from '@material-ui/core';
@@ -70,13 +66,13 @@ function Review() {
 
   const [currentProduct, setCurrentProduct] = useState({})
 
-  const [reviewArr, setReviewArr] = useState({})
-
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   const [updateProductReview] = useMutation(UPDATE_PRODUCT_REVIEW);
 
   const { products } = state;
+
+  const [reviewArr, setReviewArr] = useState();
 
 
   useEffect(() => {
@@ -135,9 +131,7 @@ function Review() {
     authorName = firstName + ' ' + lastName;
     console.log(JSON.stringify(authorName));
   }
-  
 
-  // const author = user.firstName + ' ' + user.lastName;
 
   const handleAddReview = async (event) => {
     event.preventDefault();
@@ -149,7 +143,9 @@ function Review() {
           author: authorName
         }
       })
-      setReviewArr(data.data.updateProductReview.reviews);
+      setReviewArr(data.data.updateProductReview);
+      //added reviews will update the list
+      reviewList(data.data.updateProductReview);
     } catch (error) {
       console.log(error);
     };
@@ -165,7 +161,7 @@ function Review() {
         return <>
           <ListItem className="listItem" alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt="logo" src="./asset/favicon.ico" />
+              <Avatar alt="logo" src="/favicon.ico" />
             </ListItemAvatar>
             <ListItemText
               primary={review.author}
@@ -189,6 +185,12 @@ function Review() {
       })
     }
   }
+
+  // useEffect(() => {
+  //   if (handleAddReview) {
+  //     reviewList(reviewArr);
+  //   }
+  // }, [handleAddReview, reviewList, reviewArr]);
 
   return (
     <>
@@ -214,6 +216,7 @@ function Review() {
             ( 
               // Changed function call because you had already passed in currentProduct.reviews here so when you called it in the foreach/map
               // you were essentially asking for product.reviews.reviews 
+              // Thanks!
               <List id="review-list" className={classes.rootTwo}>{reviewList(currentProduct)}</List>
         ) : (<h2>No reviews currently. Be the first to leave some feedback on this product!</h2>)}
       </div>
