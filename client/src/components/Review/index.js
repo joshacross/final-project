@@ -48,8 +48,11 @@ const useStyles = makeStyles((theme) => ({
   },
   rootTwo: {
     width: '100%',
-    maxWidth: '36ch',
+    // maxWidth: '36ch',
     backgroundColor: theme.palette.background.paper,
+  },
+  listItem: {
+    width: '100%',
   },
   inline: {
     display: 'inline',
@@ -160,12 +163,12 @@ function Review() {
       // Changed foreach to map
       return product.reviews.map((review) => {
         return <>
-          <ListItem alignItems="flex-start">
+          <ListItem className="listItem" alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="logo" src="./asset/favicon.ico" />
             </ListItemAvatar>
             <ListItemText
-              primary="Reviews"
+              primary={review.author}
               secondary={
                 <React.Fragment>
                   <Typography
@@ -174,7 +177,6 @@ function Review() {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {review.author}
                   </Typography>
                   {review.reviewText}
                 </React.Fragment>
@@ -212,7 +214,7 @@ function Review() {
             ( 
               // Changed function call because you had already passed in currentProduct.reviews here so when you called it in the foreach/map
               // you were essentially asking for product.reviews.reviews 
-              <List className={classes.rootTwo}>{reviewList(currentProduct)}</List>
+              <List id="review-list" className={classes.rootTwo}>{reviewList(currentProduct)}</List>
         ) : (<h2>No reviews currently. Be the first to leave some feedback on this product!</h2>)}
       </div>
       </div>
