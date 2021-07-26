@@ -31,6 +31,7 @@ import OrderHistory from './pages/OrderHistory';
 import OneAR from './components/OneAR';
 // import Threedee from './components/3D-Under-Construction';
 import Nav from './components/Nav';
+import NewNav from './components/NewNav';
 
 //connect to server side
 const httpLink = createHttpLink({
@@ -73,6 +74,7 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
+            <NewNav />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
