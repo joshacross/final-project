@@ -315,6 +315,10 @@ input:focus {
   .body-container form {
     height: 20vw;
   }
+
+  #review-list span {
+    font-size: 4vw;
+  }
 }
 
 @media screen and (min-width: 1280px) {
