@@ -200,9 +200,8 @@
 - [GitHub Profile 🖥️](https://github.com/)
 - [Email 📧](mailto:)
 - [Portfolio 💼](#)
-
-****
 -->
+****
 **Joshua Alexander Cross**
 
 - [GitHub Profile 🖥️](https://github.com/joshacross)
