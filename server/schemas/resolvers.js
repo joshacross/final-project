@@ -1,8 +1,9 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Order, Review } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe");
-const STRIPE_URI = process.env.STRIPE_URI2;
+require('dotenv').config();
+const stripe = require("stripe")('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
 
 const resolvers = {
   Query: {
@@ -62,8 +63,7 @@ const resolvers = {
       for (let i = 0; i < products.length; i++) {
         const product = await stripe.products.create({
           name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].thumbnail}`],
+          description: products[i].description
         });
 
         const price = await stripe.prices.create({
@@ -140,23 +140,22 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (parent, args, context) => {
-      if (context.user) {
-        const fullName = context.user.firstName + ' ' + context.user.lastName;
-          // maybe create({...args, context.user._id}) 
-        // const { review } = await Review.create(args);
-        //in theory...
-        const review = await Review.create({...args, author: fullName });
-          const product = await Product.findByIdAndUpdate(
-            
-            review.product._id,
-            {
-              $push: { reviews: review },
-              new: true
-            }
-          );
-        return product;
+    updateProductReview: async (parent, {productID, reviewText, author}, context) => {
+      if (!context.user) {
+        throw new Error("You must be logged in!");
       }
+      const product = await Product.findByIdAndUpdate(
+        {_id: productID},
+        {
+          $push: {
+            reviews:
+              { productID, reviewText, author }
+          },
+        },
+        { new: true }
+      );
+      return product;
+      
     },
     addProduct: async (parent, args, context) => {
       if (context.user) {
