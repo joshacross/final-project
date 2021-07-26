@@ -188,14 +188,14 @@
 - [GitHub Profile 🖥️](https://github.com/JohnBanas)
 - [Email 📧](mailto:jbanas9124@gmail.com)
 - [Portfolio 💼](https://johnbanas.github.io/portfolio/)
-
-<!-- ****
-
-- [GitHub Profile 🖥️](https://github.com/)
-- [Email 📧](mailto:)
-- [Portfolio 💼](#)
-
 ****
+ **Ben Sottek**
+
+- [GitHub Profile 🖥️](https://github.com/bsottek)
+- [Email 📧](mailto:bsottek@gmail.com)
+- [Portfolio 💼](https://polar-cove-82704.herokuapp.com/)
+
+<!--****
 
 - [GitHub Profile 🖥️](https://github.com/)
 - [Email 📧](mailto:)
