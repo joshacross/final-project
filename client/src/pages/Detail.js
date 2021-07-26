@@ -99,7 +99,7 @@ function Detail() {
 
   const generateQRCode = async () => {
     try {
-      const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+      const response = await QRCode.toDataURL(`https://quiet-woodland-22294.herokuapp.com/products/${id}/ar`);
       setImageUrl(response);
     }
     catch (error) {
