@@ -207,18 +207,13 @@
 - [Email 📧](mailto:)
 - [Portfolio 💼](#)
 
+-->
 ****
-<<<<<<< HEAD
 **Casey Arrington**
+
 - [GitHub Profile 🖥️](https://github.com/carrington13)
 - [Email 📧](mailto:caseyarrington13@gmail.com)
 - [Portfolio 💼](https://radiant-plains-18544.herokuapp.com/)
-=======
-
-- [GitHub Profile 🖥️](https://github.com/)
-- [Email 📧](mailto:)
-- [Portfolio 💼](#) -->
->>>>>>> 47673a6be562e4b213a9a6137f00f7535102aa2f
 
 <p>&nbsp</p>
 
