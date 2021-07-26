@@ -130,7 +130,7 @@ function ProductItem(item) {
       </Link>
       <CardActions className={classes.justify}>
         <Typography className={classes.actions}>
-          {price}
+          ${price}
         </Typography>
         <Button color="primary" variant="outlined" onClick={addToCart} className={classes.actions}>
           Add to Cart
