@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
   nobullet: {
     listStyleType: "none"
-  }
+  },
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 function Nav() {
@@ -34,6 +38,11 @@ function Nav() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
+          <li className="mx-1">
+            <Link to="/ProductList">
+              View Our Products
+            </Link>
+          </li>
           <li className="mx-1">
             <Link to="/orderHistory">
               Order History
@@ -51,6 +60,11 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
+            <Link to="/ProductList">
+              View Our Products
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/signup">
               Signup
             </Link>
@@ -65,6 +79,14 @@ function Nav() {
     }
   }
 
+  function landingRedirect() {
+    if (Auth.loggedIn()) {
+      return '/ProductList';
+    }
+
+    return '/'
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
@@ -73,9 +95,9 @@ function Nav() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link to="/">
-              <span role="img" aria-label="shopping bag">AR </span>
-              Augmented Retail
+            <Link to= {landingRedirect()}  className={classes.logo}>
+              <span role="img" aria-label="logo" alt="augmented retail logo"><img src='../../../images/ar.png' alt="augmented retail logo" /> </span>
+              <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>
           

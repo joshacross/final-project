@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const reviewSchema = new Schema({
-  product: {
+  productID: {
     type: Schema.Types.ObjectId,
     ref: 'Product',
     required: true
   },
   author: {
     type: String,
-    required: true
+    required: true,
   },
   reviewText: {
     type: String,
