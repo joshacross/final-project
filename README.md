@@ -201,13 +201,14 @@
 - [Email 📧](mailto:)
 - [Portfolio 💼](#)
 
-****
-
-- [GitHub Profile 🖥️](https://github.com/)
-- [Email 📧](mailto:)
-- [Portfolio 💼](#)
-
 -->
+****
+**Joshua Alexander Cross**
+
+- [GitHub Profile 🖥️](https://github.com/joshacross)
+- [Email 📧](mailto:joshuaalexandercross@gmail.com)
+- [Portfolio 💼](https://joshacross.github.io/my-portfolio/)
+
 ****
 **Casey Arrington**
 
