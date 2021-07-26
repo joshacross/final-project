@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Cart from '../Cart';
+import logo from '../../assets/images/AR.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,11 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
+            <Link to="/ProductList">
+              View Our Products
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/orderHistory">
               Order History
             </Link>
@@ -55,6 +61,11 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
+            <Link to="/ProductList">
+              View Our Products
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/signup">
               Signup
             </Link>
@@ -69,6 +80,14 @@ function Nav() {
     }
   }
 
+  function landingRedirect() {
+    if (Auth.loggedIn()) {
+      return '/ProductList';
+    }
+
+    return '/'
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
@@ -77,8 +96,8 @@ function Nav() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" className={classes.logo}>
-              <span role="img" aria-label="logo" alt="augmented retail logo"><img src='../../../images/ar.png' alt="augmented retail logo" /> </span>
+            <Link to= {landingRedirect()}  className={classes.logo}>
+              <span role="img" aria-label="logo" alt="augmented retail logo"><img src={logo} alt="augmented retail logo" /> </span>
               <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>

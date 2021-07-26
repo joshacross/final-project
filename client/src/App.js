@@ -31,10 +31,11 @@ import OrderHistory from './pages/OrderHistory';
 import OneAR from './components/OneAR';
 // import Threedee from './components/3D-Under-Construction';
 import Nav from './components/Nav';
+import ProductList from "./components/ProductList";
 
 //connect to server side
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphQL'
+  uri: '/graphQL'
 });
 
 //if error in client to server side requests...
@@ -75,6 +76,7 @@ function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/productList" component={ProductList} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/success" component={Success} />

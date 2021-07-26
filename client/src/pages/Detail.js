@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
 import { QUERY_PRODUCTS } from '../utils/queries';
-// import spinner from '../assets/spinner.gif';
 import { useStoreContext } from "../utils/GlobalState";
 import {
   REMOVE_FROM_CART,
@@ -18,6 +16,7 @@ import Modal from '@material-ui/core/Modal';
 //for styling modal
 import { makeStyles } from '@material-ui/core/styles';
 import QRCode from 'qrcode';
+import Review from '../components/Review';
 
 function Detail() {
   
@@ -100,7 +99,7 @@ function Detail() {
 
   const generateQRCode = async () => {
     try {
-      const response = await QRCode.toDataURL(`http://localhost:3000/products/${id}/ar`);
+      const response = await QRCode.toDataURL(`https://quiet-woodland-22294.herokuapp.com/products/${id}/ar`);
       setImageUrl(response);
     }
     catch (error) {
@@ -186,7 +185,7 @@ function Detail() {
     <>
       {currentProduct ? (
         <div className="container my-1">
-          <Link id="back-link" to="/">← Back to Products</Link>
+          <Link id="back-link" to="/ProductList">← Back to Products</Link>
 
           <div className="body-container">
             <h2>{currentProduct.name}</h2>
@@ -215,6 +214,13 @@ function Detail() {
           <Button className={classes.buttons} variant="outlined" color="primary" onClick={() => { handleOpen(); generateQRCode(); }}>
             View In Your Environment
             </Button>
+            <div>
+              {/* <Link color="primary" variant="outlined" to={`/review/${currentProduct._id}`} className={classes.actions}>
+                Write Review 
+              </Link> */}
+              <hr></hr>
+              <Review />
+            </div>
           </div>
           <Modal
             open={open}
