@@ -214,6 +214,12 @@
 - [GitHub Profile 🖥️](https://github.com/carrington13)
 - [Email 📧](mailto:caseyarrington13@gmail.com)
 - [Portfolio 💼](https://radiant-plains-18544.herokuapp.com/)
+****
+**Kevin Dallas Yatsinko**
+
+- [GitHub Profile 🖥️](https://github.com/okni-c)
+- [Email 📧](mailto:kevindyatsinko@gmail.com)
+- [Portfolio 💼](https://kevindyatsinko.herokuapp.com/)
 
 <p>&nbsp</p>
 
