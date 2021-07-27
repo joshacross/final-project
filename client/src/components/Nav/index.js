@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Cart from '../Cart';
+import logo from '../../assets/images/AR.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +97,7 @@ function Nav() {
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             <Link to= {landingRedirect()}  className={classes.logo}>
-              <span role="img" aria-label="logo" alt="augmented retail logo"><img src='../../../images/ar.png' alt="augmented retail logo" /> </span>
+              <span role="img" aria-label="logo" alt="augmented retail logo"><img src={logo} alt="augmented retail logo" /> </span>
               <div id='logo-title'>Augmented Retail</div>
             </Link>
           </Typography>

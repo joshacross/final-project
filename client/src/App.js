@@ -35,7 +35,7 @@ import ProductList from "./components/ProductList";
 
 //connect to server side
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphQL'
+  uri: '/graphQL'
 });
 
 //if error in client to server side requests...
